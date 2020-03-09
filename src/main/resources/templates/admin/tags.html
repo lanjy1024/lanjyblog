@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head  th:replace="admin/_fragments::head(~{::title})">
+    <meta charset="UTF-8">
+    <!-- 移动端预览设置 -->
+    <meta name="vireport" content="width=device-width,initial-scale=1.0">
+    <title>Blog管理后台-标签管理</title>
+    <link rel="stylesheet" href="../../static/lib/Semantic/semantic.min.css">
+    <link rel="stylesheet" href="../../static/css/index.css">
+
+    <script src="../../static/js/jquery-2.1.1.min.js"></script>
+    <script src="../../static/lib/Semantic/semantic.min.js"></script>
+</head>
+<body>
+    <!--导航-->
+    <nav th:replace="admin/_fragments::menu(3)"  class="ui inverted attached segment">
+        <div class="ui container">
+            <div class="ui inverted secondary stackable menu" >
+                <h2 class="ui teal header item">Blog管理后台</h2>
+                <a href="#" class="m-item item m-mobile-hide active"><i class="mini home icon"></i>博客</a>
+                <a href="#" class="m-item item m-mobile-hide"><i class="mini idea icon"></i>分类</a>
+                <a href="#" class="m-item item m-mobile-hide"><i class="mini tags icon"></i>标签</a>
+                <div class="right menu m-item item m-mobile-hide" >
+                    <div class="ui dropdown item">
+                        <div class="text">
+                            <img  class="ui image avatar" src="../../static/image/jenny.jpg">蓝景优
+                            <i class="dropdown icon"></i>
+                        </div>
+                        <div class="menu ">
+                            <a href="#" class="item">注销</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <a href="#" id="sidebar_button" class="ui black button m-top-right m-mobile-show">
+            <i class="sidebar icon"></i>
+        </a>
+    </nav>
+
+
+
+<!--主页内容-->
+    <div class="m-container m-padded-big m-wrapper-height">
+        <div class="ui container">
+            <!--消息提示-->
+            <div class="ui success message" th:unless="${#strings.isEmpty(message)}">
+                <i class="close icon"></i>
+                <div class="head'">提示：</div>
+                <p th:text="${message}">操作成功！</p>
+            </div>
+            <!--消息提示-->
+            <div class="ui fail message red" th:unless="${#strings.isEmpty(error_message)}">
+                <i class="close icon"></i>
+                <div class="head'">提示：</div>
+                <p th:text="${error_message}">操作失败！</p>
+            </div>
+            <table class="ui celled  inverted table">
+                <thead>
+                <tr>
+                    <th></th>
+                    <th>标签名称</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="tag,iterStat : ${page.content}">
+                    <td th:text="${iterStat.count}">1</td>
+                    <td th:text="${tag.name}">John</td>
+                    <td>
+                        <a href="#" th:href="@{/admin/tags/{id}/update(id=${tag.id})}" class="ui mini teal button">编辑</a>
+                        <a href="#" th:href="@{/admin/tags/{id}/delete(id=${tag.id})}" class="ui mini red button">删除</a>
+                    </td>
+                </tr>
+                </tbody>
+                <tfoot >
+                    <tr>
+                        <th colspan="2">
+                           <div class="ui pagination inverted menu"  th:if="${page.totalPages}>1">
+                               <a class="item" th:href="@{/admin/tags(page=${page.number}-1)}" th:unless="${page.first}">上一页</a>
+                               <a class="item" th:href="@{/admin/tags(page=${page.number}+1)}" th:unless="${page.last}">下一页>></a>
+                           </div>
+                            <a href="#" class=" ui mini right green button" th:href="@{/admin/tags/input}" >新增<i class="icon add"></i></a>
+                        </th>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+        <br>
+        <br><br>
+        <br><br>
+        <br>
+    </div>
+
+<!--底部-->
+    <footer th:replace="admin/_fragments::footer" class="ui inverted vertical segment m-padded-tb-massive" >
+        <div class="ui middle aligned container m-opacity-mini m-container-sm">
+            <div class="ui inverted divided attached grid aligned stackable">
+                <div class="two wide column">
+                    <img src="../../static/image/qrcode.png" class="ui rounded image" alt="" style="width: 100px">
+                </div>
+                <div class="three wide column">
+                    <h4 class="ui inverted header">最新博客</h4>
+                    <div class="ui inverted link list">
+                        <a href="#" class="item ">首页</a>
+                        <a href="#" class="item">分类</a>
+                        <a href="#" class="item">标签</a>
+                        <a href="#" class="item">关于我</a>
+                    </div>
+                </div>
+                <div class="four wide column">
+                    <h4 class="ui inverted header">联系我</h4>
+                    <div class="ui inverted link list">
+                        <a href="#" class="item">Email:lanjydeve2014@163.com</a>
+                        <a href="#" class="item">QQ:1615960786</a>
+                    </div>
+                </div>
+                <div class="seven wide column">
+                    <div class="ui inverted link list">
+                        <h4 class="ui inverted header"></h4>
+                        <p>这是我的个人博客，会不定期分享一些编程、写作、思考相关的文章......</p>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <br>
+            <div class="ui inverted divided attached grid center aligned">
+                <div class="sixteen wide column">
+                    <p class=" m-text-thin m-text-space m-text-lined">Copyright©2019-2025 Designed by lanjy</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+
+
+    <script>
+        $("#sidebar_button").click(function () {
+            $('.m-item').toggleClass('m-mobile-hide');
+        });
+        $(".ui.dropdown").dropdown();
+
+
+    </script>
+</body>
+</html>

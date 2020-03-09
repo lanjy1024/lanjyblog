@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:fragment="head(title)">
+    <meta charset="UTF-8">
+    <!-- 移动端预览设置 -->
+    <meta name="vireport" content="width=device-width,initial-scale=1.0">
+    <title th:replace="${title}">blog内容</title>
+    <link rel="stylesheet" href="../static/lib/Semantic/semantic.min.css" th:href="@{/lib/Semantic/semantic.min.css}">
+    <link rel="stylesheet" href="../static/css/index.css" th:href="@{/css/index.css}">
+    <link rel="stylesheet" href="../static/css/animate.css" th:href="@{/css/animate.css}">
+    <link rel="stylesheet" href="../static/css/typo.css" th:href="@{/css/typo.css}">
+    <link rel="stylesheet" href="../static/lib/prism/prism-themes-default.css" th:href="@{/lib/prism/prism-themes-default.css}">
+    <link rel="stylesheet" href="../static/lib/tocbot/tocbot.css" th:href="@{/lib/tocbot/tocbot.css}">
+    <link rel="stylesheet" href="../static//lib/editorMd/css/editormd.css" th:href="@{/lib/editorMd/css/editormd.css}"/>
+
+    <script src="../static/js/jquery-2.1.1.min.js" th:src="@{/js/jquery-2.1.1.min.js}"></script>
+    <script src="../static/lib/Semantic/semantic.min.js" th:src="@{/lib/Semantic/semantic.min.js}"></script>
+    <script src="../static/lib/prism/prism-themes-default.js" th:src="@{/lib/prism/prism-themes-default.js}"></script>
+    <script src="../static/lib/tocbot/tocbot.min.js" th:src="@{/lib/tocbot/tocbot.min.js}"></script>
+    <script src="../static/lib/qrcode/qrcode.min.js" th:src="@{/lib/qrcode/qrcode.min.js}"></script>
+    <script src="../static/js/jquery.scrollTo.min.js" th:src="@{/js/jquery.scrollTo.min.js}"></script>
+    <script src="../static/js/jquery.waypoints.min.js" th:src="@{/js/jquery.waypoints.min.js}"></script>
+
+</head>
+<body>
+    <nav th:fragment="menu(n)"  class="ui inverted attached segment ">
+        <div class="ui container">
+            <div class="ui inverted secondary stackable menu" >
+                <h2 class="ui teal header item">Blog管理后台</h2>
+                <a href="#" th:href="@{/admin/blogs}" class="m-item item m-mobile-hide" th:classappend="${n==1} ? 'active'"><i class="mini home icon"></i>博客</a>
+                <a href="#" th:href="@{/admin/types}" class="m-item item m-mobile-hide" th:classappend="${n==2} ? 'active'"><i class="mini idea icon"></i>分类</a>
+                <a href="#" th:href="@{/admin/tags}" class="m-item item m-mobile-hide" th:classappend="${n==3} ? 'active'"><i class="mini tags icon"></i>标签</a>
+                <div class="right menu m-item item m-mobile-hide" >
+                    <div class="ui dropdown item">
+                        <div class="text">
+                            <img  class="ui image avatar" th:src="@{${session.user.avatar}}">
+                            <span th:text="${session.user.nickName}" ></span>
+                            <i class="dropdown icon"></i>
+                        </div>
+                        <div class="menu ">
+                            <a href="#" class="item" th:href="@{/}">博客前端首页</a>
+                            <a href="#" class="item" th:href="@{/admin/index}">个人中心</a>
+                            <a href="#" class="item" th:href="@{/admin/logout}">注销</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <a href="#" id="sidebar_button" class="ui black button m-top-right m-mobile-show">
+            <i class="sidebar icon"></i>
+        </a>
+    </nav>
+
+
+    <!--底部-->
+    <footer th:fragment="footer" class="ui inverted vertical segment m-padded-tb-massive m-margin-top-small">
+        <div class="ui middle aligned container m-opacity-mini m-container-sm">
+            <div class="ui inverted divided attached grid aligned stackable">
+                <div class="two wide column">
+                    <img th:src="@{/image/qrcode.png}" src="../static/image/qrcode.png" class="ui rounded image" alt="" style="width: 100px">
+                </div>
+                <div class="three wide column">
+                    <h4 class="ui inverted header">最新博客</h4>
+                    <div class="ui inverted link list">
+                        <a href="#" class="item ">首页</a>
+                        <a href="#" class="item">分类</a>
+                        <a href="#" class="item">标签</a>
+                        <a href="#" class="item">关于我</a>
+                    </div>
+                </div>
+                <div class="four wide column">
+                    <h4 class="ui inverted header">联系我</h4>
+                    <div class="ui inverted link list">
+                        <a href="#" class="item">Email:lanjydeve2014@163.com</a>
+                        <a href="#" class="item">QQ:1615960786</a>
+                    </div>
+                </div>
+                <div class="seven wide column">
+                    <div class="ui inverted link list">
+                        <h4 class="ui inverted header"></h4>
+                        <p>这是我的个人博客，会不定期分享一些编程、写作、思考相关的文章......</p>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <br>
+            <div class="ui inverted divided attached grid center aligned">
+                <div class="sixteen wide column">
+                    <p class=" m-text-thin m-text-space m-text-lined">Copyright©2019-2025 Designed by lanjy</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,52 @@
+.LOG
+页面开发：
+    前端框架为：semanticUI：https://1.semantic-ui.com/
+    背景图资源：https://picsum.photos/images
+插件集成：
+    文档编辑器：开源在线 Markdown 编辑器：https://pandao.github.io/editor.md/
+    内容排版：typo.css：https://typo.sofi.sh/
+    动画：animate.css：https://daneden.github.io/animate.css/
+    代码高亮：prism：https://prismjs.com/
+    滚动侦测 waypoints：http://imakewebthings.com/waypoints/
+    平滑滚动：https://github.com/flesler/jquery.scrollTo
+    目录生成：Tocbot
+    二维码生成：qrcode：js:http://davidshimjs.github.io/qrcodejs/
+    将Markdown转化成HTML插件commonmark
+后端框架：
+    引入Spring Boot模块
+        Web
+        Thymeleaf
+        JPA
+        MySQL
+        Aspects(集成spring aop)
+        DevTools(开发工具)
+
+
+日志处理
+    aop实现记录日志内容
+        请求url
+        访问者ip
+        调用方法classMethod
+        参数args
+        返回内容
+
+
+
+th:utext="${blog.content}" --> 不转义内容
+
+template模板的用法 <script th:inline="javascript">
+var serurl = /*[[@{/blog/{id}(id=${blog.id})]]*/""
+
+
+
+
+部署环境相关
+如何使用VMware搭建Linux(CentOS)服务器：https://www.bilibili.com/video/av90998251?t=2029
+吴晓龙个人博客：http://wuxiaolong.tech/
+CentOS6.5使用yum安装mysql
+https://www.cnblogs.com/kibana/p/11111555.html
+centOS 6.5关闭防火墙步骤
+关闭命令：  service iptables stop
+        永久关闭防火墙：chkconfig iptables off
+两个命令同时运行，运行完成后查看防火墙关闭状态
+        service iptables status

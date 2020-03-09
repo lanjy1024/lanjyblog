@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="_fragments::head(~{::title})">
+    <meta charset="UTF-8">
+    <!-- 移动端预览设置 -->
+    <meta name="vireport" content="width=device-width,initial-scale=1.0">
+    <title>LANJYBLOG管理后台登录</title>
+    <link rel="stylesheet" href="../../static/lib/Semantic/semantic.min.css">
+    <link rel="stylesheet" href="../../static/css/index.css">
+    <script src="../../static/js/jquery-2.1.1.min.js"></script>
+    <script src="../../static/lib/Semantic/semantic.min.js"></script>
+
+</head>
+<body>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+
+<!--底部-->
+<!--<footer th:replace="_fragments::footer" class="ui inverted vertical segment m-padded-tb-massive ">
+    <div class="ui middle aligned container m-opacity-mini m-container-sm">
+        <div class="ui inverted divided attached grid aligned stackable">
+            <div class="two wide column">
+                <img src="../../static/image/qrcode.png" class="ui rounded image" alt="" style="width: 100px">
+            </div>
+            <div class="three wide column">
+                <h4 class="ui inverted header">最新博客</h4>
+                <div class="ui inverted link list">
+                    <a href="#" class="item ">首页</a>
+                    <a href="#" class="item">分类</a>
+                    <a href="#" class="item">标签</a>
+                    <a href="#" class="item">关于我</a>
+                </div>
+            </div>
+            <div class="four wide column">
+                <h4 class="ui inverted header">联系我</h4>
+                <div class="ui inverted link list">
+                    <a href="#" class="item">Email:lanjydeve2014@163.com</a>
+                    <a href="#" class="item">QQ:1615960786</a>
+                </div>
+            </div>
+            <div class="seven wide column">
+                <div class="ui inverted link list">
+                    <h4 class="ui inverted header"></h4>
+                    <p>这是我的个人博客，会不定期分享一些编程、写作、思考相关的文章......</p>
+                </div>
+            </div>
+        </div>
+        <br>
+        <br>
+        <div class="ui inverted divided attached grid center aligned">
+            <div class="sixteen wide column">
+                <p class=" m-text-thin m-text-space m-text-lined">Copyright©2019-2025 Designed by lanjy</p>
+            </div>
+        </div>
+    </div>
+</footer>-->
+<div class="m-container-sm m-padded-tb-massive stackable" style="max-width: 40em !important;">
+    <div class="ur container">
+        <div class="ui middle aligned center aligned grid stackable">
+            <div class="column">
+                <h2 class="ui teal image header">
+                    <!--<img src="login.html" class="image">-->
+                    <div class="content">
+                        博客管理后台登录
+                    </div>
+                </h2>
+                <form class="ui large form" method="post" action="#" th:action="@{/admin/login}">
+                    <div class="ui stacked segment">
+                        <div class="field">
+                            <div class="ui left icon input">
+                                <i class="user icon"></i>
+                                <input type="text" name="username" placeholder="用户名">
+                            </div>
+                        </div>
+                        <div class="field">
+                            <div class="ui left icon input">
+                                <i class="user icon"></i>
+                                <input type="password" name="password" placeholder="登录密码">
+                            </div>
+                        </div>
+                        <button class="ui fluid large teal submit button">登    录</button>
+                    </div>
+                    <div class="ui error mini message"></div>
+                    <div class="ui mini negative message" th:unless="${#strings.isEmpty(message)}" th:text="${message}">
+                        用户名或密码错误
+                    </div>
+                </form>
+                <!--<div class="ui message">-->
+                    <!--New to us?<a href="#">Sign Up</a>-->
+                <!--</div>-->
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+
+    $('.ui.form')
+        .form({
+            username: {
+                identifier  : 'username',
+                rules: [
+                    {
+                        type   : 'empty',
+                        prompt : '请输入用户名'
+                    }
+                ]
+            },
+            password: {
+                identifier : 'password',
+                rules: [
+                    {
+                        type   : 'empty',
+                        prompt : '请输入密码'
+                    },
+                    {
+                        type   : 'maxLength[6]',
+                        prompt : '密码长度不能超过6位数'
+                    }
+                ]
+            }
+        })
+    ;
+</script>
+</body>
+</html>

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="_fragments::head(~{::title})">
+    <meta charset="UTF-8">
+    <!-- 移动端预览设置 -->
+    <meta name="vireport" content="width=device-width,initial-scale=1.0">
+    <title>关于我</title>
+    <link rel="stylesheet" href="../static/lib/Semantic/semantic.min.css">
+    <link rel="stylesheet" href="../static/css/index.css">
+</head>
+<body>
+    <!--导航-->
+    <nav th:replace="_fragments::menu(5)" class="ui inverted attached segment">
+        <div class="ui container">
+            <div class="ui inverted secondary stackable menu" >
+                <h2 class="ui teal header item">Blog</h2>
+                <a href="#" class="m-item item m-mobile-hide"><i class="mini home icon"></i>首页</a>
+                <a href="#" class="m-item item m-mobile-hide"><i class="mini idea icon"></i>分类</a>
+                <a href="#" class="m-item item m-mobile-hide"><i class="mini tags icon"></i>标签</a>
+                <a href="#" class="m-item item m-mobile-hide"><i class="mini clone icon"></i>归档</a>
+                <a href="#" class="m-item item m-mobile-hide  active"><i class="mini info icon"></i>关于我</a>
+                <div class="right m-item item m-mobile-hide" >
+                    <div class="ui inverted transparent icon input">
+                        <input type="text" placeholder="Search...">
+                        <i class="search icon"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <a href="#" id="sidebar_button" class="ui black button m-top-right m-mobile-show">
+            <i class="sidebar icon"></i>
+        </a>
+    </nav>
+
+<!--主页内容区域-->
+    <div class="m-container m-padded-big">
+        <div class="ui container">
+            <div class="ui stackable grid">
+                <div class="eleven wide column">
+                    <img th:src="@{/image/me.jpg}" src="../static/image/me.jpg" alt="" class="ui rounded image">
+                </div>
+                <div class="five wide column">
+                    <div class="ui top attached segment">
+                        <div class="ui header">关于lanjyblog</div>
+                    </div>
+                    <div class="ui attached segment">
+                        <p class="m-text-lined m-text-space m-text-thin">lanjyblog,是我在疫情防控时期，居家隔离时突发奇想开发的一个个人博客网站，纯粹是个人的无聊之作，该网站并没有用到什么牛逼的技术。</p>
+                        <p class="m-text-lined m-text-space m-text-thin">lanjy，程序猿是我，码农也是我，折腾在 0 和 1 世界的90后大叔；一个终身学习无限循环，希望可以结识可以共同成长的小伙伴。</p>
+                        <p class="m-text-lined m-text-space m-text-thin">热爱编程，喜欢折腾，正在探索高校学习编程技术的方法......</p>
+                    </div>
+                    <div class="ui attached segment">
+                        <div class="ui inverted segment">
+                            <div class="ui inverted button m-margin-mini">编程</div>
+                            <div class="ui inverted black button m-margin-mini">思考</div>
+                            <div class="ui inverted yellow button m-margin-mini">写作</div>
+                            <div class="ui inverted green button m-margin-mini">游戏</div>
+                            <div class="ui inverted blue button m-margin-mini">运动</div>
+                            <div class="ui inverted orange button m-margin-mini">音乐</div>
+                        </div>
+                    </div>
+                    <div class="ui attached segment">
+                        <div class="ui inverted segment">
+                            <div class="ui inverted purple button m-margin-mini">java</div>
+                            <div class="ui inverted pink button m-margin-mini">JavaScript</div>
+                            <div class="ui inverted blue button m-margin-mini">H5</div>
+                            <div class="ui inverted red button m-margin-mini">MySQL</div>
+                            <div class="ui inverted black button m-margin-mini">Oracle</div>
+                            <div class="ui inverted yellow button m-margin-mini">Spring</div>
+                            <div class="ui inverted orange button m-margin-mini">Springboot</div>
+                            <div class="ui inverted green button m-margin-mini">Mybatis</div>
+                            <div class="ui inverted purple button m-margin-mini">SpringCloud</div>
+                            <div class="ui inverted pink button m-margin-mini">Redis</div>
+                            <div class="ui inverted blue button m-margin-mini">dubbo</div>
+                            <div class="ui inverted red button m-margin-mini">zookeeper</div>
+                            <div class="ui inverted black button m-margin-mini">MQ</div>
+                        </div>
+                    </div>
+                    <div class="ui attached segment">
+                       <a class="ui github-addr circular icon button"
+                          href="https://github.com/">
+                           <i class="github icon"></i>
+                       </a>
+                        <a class="ui wechat circular icon button">
+                            <i class="wechat icon"></i>
+                        </a>
+                        <a class="ui qq-number circular icon button" data-content="1615960786">
+                            <i class="qq icon"></i>
+                        </a>
+                    </div>
+
+                    <!--微信二维码-->
+                    <div class="ui wechatQR flowing popup  transition hidden">
+                        <div class="ui green basic label">
+                            <div class="ui images" style="font-size: inherit !important;">
+                                <div class="image">
+                                    <img th:src="@{/image/qrcode.png}" src="../static/image/qrcode.png" alt="" class="ui rounded bordered image" style="width: 120px">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+<!--底部-->
+    <footer th:replace="_fragments::footer" class="ui inverted vertical segment m-padded-tb-massive ">
+        <div class="ui middle aligned container m-opacity-mini m-container-sm">
+            <div class="ui inverted divided attached grid aligned stackable">
+                <div class="two wide column">
+                    <img src="../static/image/qrcode.png" class="ui rounded image" alt="" style="width: 100px">
+                </div>
+                <div class="three wide column">
+                    <h4 class="ui inverted header">最新博客</h4>
+                    <div class="ui inverted link list">
+                        <a href="#" class="item ">首页</a>
+                        <a href="#" class="item">分类</a>
+                        <a href="#" class="item">标签</a>
+                        <a href="#" class="item">关于我</a>
+                    </div>
+                </div>
+                <div class="four wide column">
+                    <h4 class="ui inverted header">联系我</h4>
+                    <div class="ui inverted link list">
+                        <a href="#" class="item">Email:lanjydeve2014@163.com</a>
+                        <a href="#" class="item">QQ:1615960786</a>
+                    </div>
+                </div>
+                <div class="seven wide column">
+                    <div class="ui inverted link list">
+                        <h4 class="ui inverted header"></h4>
+                        <p>这是我的个人博客，会不定期分享一些编程、写作、思考相关的文章......</p>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <br>
+            <div class="ui inverted divided attached grid center aligned">
+                <div class="sixteen wide column">
+                    <p class=" m-text-thin m-text-space m-text-lined">Copyright©2019-2025 Designed by lanjy</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <script src="../static/js/jquery-2.1.1.min.js"></script>
+    <script src="../static/lib/Semantic/semantic.min.js"></script>
+
+    <script>
+        $(".ui.dropdown").dropdown();
+        $("#sidebar_button").click(function () {
+            $('.m-item').toggleClass('m-mobile-hide');
+        });
+        $('.qq-number').popup();
+        $('.wechat').popup({
+            popup : $('.wechatQR.popup'),
+            position  : 'bottom center'
+        });
+    </script>
+</body>
+</html>

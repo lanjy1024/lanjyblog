@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="_fragments::head(~{::title})">
+    <meta charset="UTF-8">
+    <!-- 移动端预览设置 -->
+    <meta name="vireport" content="width=device-width,initial-scale=1.0">
+    <title>404-对不起！您访问的页面不存在</title>
+    <link rel="stylesheet" href="../static/lib/Semantic/semantic.min.css">
+    <link rel="stylesheet" href="../static/css/index.css">
+    <script src="../static/js/jquery-2.1.1.min.js"></script>
+    <script src="../static/lib/Semantic/semantic.min.js"></script>
+
+</head>
+<body bgcolor="#494949">
+<!--导航-->
+<nav th:replace="_fragments::menu(0)" class="ui inverted attached segment">
+    <div class="ui container">
+        <div class="ui inverted secondary stackable menu" >
+            <h2 class="ui teal header item">Blog</h2>
+            <a href="#" class="m-item item m-mobile-hide"><i class="mini home icon"></i>首页</a>
+            <a href="#" class="m-item item m-mobile-hide"><i class="mini idea icon"></i>分类</a>
+            <a href="#" class="m-item item m-mobile-hide"><i class="mini tags icon"></i>标签</a>
+            <a href="#" class="m-item item m-mobile-hide"><i class="mini clone icon"></i>归档</a>
+            <a href="#" class="m-item item m-mobile-hide"><i class="mini info icon"></i>关于我</a>
+            <div class="right m-item item m-mobile-hide" >
+                <div class="ui inverted transparent icon input">
+                    <input type="text" placeholder="Search...">
+                    <i class="search icon"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a href="#" id="sidebar_button" class="ui black button m-top-right m-mobile-show">
+        <i class="sidebar icon"></i>
+    </a>
+</nav>
+
+<!--主页内容-->
+<style type="text/css">
+
+    .head404{ width:580px; height:234px; margin:50px auto 0 auto; background:url(https://www.daixiaorui.com/Public/images/head404.png) no-repeat; }
+
+    .txtbg404{ width:499px; height:169px; margin:10px auto 0 auto; background:url(https://www.daixiaorui.com/Public/images/txtbg404.png) no-repeat;}
+
+    .txtbg404 .txtbox{ width:390px; position:relative; top:30px; left:60px;color:#eee; font-size:13px;}
+
+    .txtbg404 .txtbox p {margin:5px 0; line-height:18px;}
+
+    .txtbg404 .txtbox .paddingbox { padding-top:15px;}
+
+    .txtbg404 .txtbox p a { color:#eee; text-decoration:none;}
+
+    .txtbg404 .txtbox p a:hover { color:#FC9D1D; text-decoration:underline;}
+
+</style>
+
+
+
+
+<div class="head404"></div>
+
+<div class="txtbg404">
+
+    <div class="txtbox">
+
+        <p>对不起，您请求的页面不存在、或已被删除、或暂时不可用</p>
+
+        <p class="paddingbox">请点击以下链接继续浏览网页</p>
+
+        <p>》<a style="cursor:pointer" οnclick="history.back()">返回上一页面</a></p>
+
+        <p>》<a href="https://www.daixiaorui.com">返回网站首页</a></p>
+
+    </div>
+
+</div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<!--底部-->
+<footer th:replace="_fragments::footer" class="ui inverted vertical segment m-padded-tb-massive ">
+    <div class="ui middle aligned container m-opacity-mini m-container-sm">
+        <div class="ui inverted divided attached grid aligned stackable">
+            <div class="two wide column">
+                <img src="../static/image/qrcode.png" class="ui rounded image" alt="" style="width: 100px">
+            </div>
+            <div class="three wide column">
+                <h4 class="ui inverted header">最新博客</h4>
+                <div class="ui inverted link list">
+                    <a href="#" class="item ">首页</a>
+                    <a href="#" class="item">分类</a>
+                    <a href="#" class="item">标签</a>
+                    <a href="#" class="item">关于我</a>
+                </div>
+            </div>
+            <div class="four wide column">
+                <h4 class="ui inverted header">联系我</h4>
+                <div class="ui inverted link list">
+                    <a href="#" class="item">Email:lanjydeve2014@163.com</a>
+                    <a href="#" class="item">QQ:1615960786</a>
+                </div>
+            </div>
+            <div class="seven wide column">
+                <div class="ui inverted link list">
+                    <h4 class="ui inverted header"></h4>
+                    <p>这是我的个人博客，会不定期分享一些编程、写作、思考相关的文章......</p>
+                </div>
+            </div>
+        </div>
+        <br>
+        <br>
+        <div class="ui inverted divided attached grid center aligned">
+            <div class="sixteen wide column">
+                <p class=" m-text-thin m-text-space m-text-lined">Copyright©2019-2025 Designed by lanjy</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+<script>
+    $("#sidebar_button").click(function () {
+        $('.m-item').toggleClass('m-mobile-hide');
+    });
+
+</script>
+</body>
+</html>
