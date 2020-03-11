@@ -9,11 +9,6 @@ spring:
       ddl-auto: update
     show-sql: true
 logging:
-  level:
-    root: info
-    com.lanjy.blog: debug
-  file:
-    path: com.lanjy.blog
-    name: blog-dev.log
+  config: classpath:logback-spring.xml
 server:
   port: 80

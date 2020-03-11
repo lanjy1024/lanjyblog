@@ -5,8 +5,8 @@
     <!-- 移动端预览设置 -->
     <meta name="vireport" content="width=device-width,initial-scale=1.0">
     <title>归档</title>
-    <link rel="stylesheet" href="../static/lib/Semantic/semantic.min.css">
-    <link rel="stylesheet" href="../static/css/index.css">
+    <link rel="stylesheet" href="../static/lib/Semantic/semantic.min.css" th:href="@{/lib/Semantic/semantic.min.css}"/>
+    <link rel="stylesheet" href="../static/css/index.css" th:href="@{/css/index.css}"/>
 </head>
 <body>
     <!--导航-->
@@ -107,8 +107,8 @@
     </footer>
 
 
-    <script src="../static/js/jquery-2.1.1.min.js"></script>
-    <script src="../static/lib/Semantic/semantic.min.js"></script>
+    <script src="../static/js/jquery-2.1.1.min.js" th:src="@{/static/js/jquery-2.1.1.min.js}"></script>
+    <script src="../static/lib/Semantic/semantic.min.js" th:src="@{/static/lib/Semantic/semantic.min.js}"></script>
 
     <script>
         $(".ui.dropdown").dropdown();

@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
-<head th:replace="_fragments::head(~{::title})">
+<link th:replace="_fragments::head(~{::title})">
     <meta charset="UTF-8">
     <!-- 移动端预览设置 -->
     <meta name="vireport" content="width=device-width,initial-scale=1.0">
     <title>关于我</title>
-    <link rel="stylesheet" href="../static/lib/Semantic/semantic.min.css">
-    <link rel="stylesheet" href="../static/css/index.css">
+    <link rel="stylesheet" href="../static/lib/Semantic/semantic.min.css"/>
+    <link rel="stylesheet" href="../static/css/index.css"/>
 </head>
 <body>
     <!--导航-->
@@ -37,7 +37,7 @@
         <div class="ui container">
             <div class="ui stackable grid">
                 <div class="eleven wide column">
-                    <img th:src="@{/image/me.jpg}" src="../static/image/me.jpg" alt="" class="ui rounded image">
+                    <img th:src="@{/static/image/me.jpg}" src="../static/image/me.jpg" alt="" class="ui rounded image">
                 </div>
                 <div class="five wide column">
                     <div class="ui top attached segment">
@@ -145,8 +145,8 @@
     </footer>
 
 
-    <script src="../static/js/jquery-2.1.1.min.js"></script>
-    <script src="../static/lib/Semantic/semantic.min.js"></script>
+    <script src="../static/js/jquery-2.1.1.min.js" th:src="@{/static/js/jquery-2.1.1.min.js}"></script>
+    <script src="../static/lib/Semantic/semantic.min.js" th:src="@{/static/lib/Semantic/semantic.min.js}"></script>
 
     <script>
         $(".ui.dropdown").dropdown();
