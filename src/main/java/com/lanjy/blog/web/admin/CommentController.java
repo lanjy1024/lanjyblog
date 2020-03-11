@@ -6,6 +6,7 @@ import com.lanjy.blog.po.User;
 import com.lanjy.blog.service.BlogService;
 import com.lanjy.blog.service.CommentService;
 import com.lanjy.blog.service.UserService;
+import javassist.NotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,7 +65,7 @@ public class CommentController {
      */
     @PostMapping("/comments")
     public String postComments(Comment comment,
-                           HttpSession session, Model model){
+                           HttpSession session, Model model) throws NotFoundException {
 
 //        comment.setAvatar(user.getAvatar());
 //        comment.setEmail(user.getEmail());

@@ -4,10 +4,13 @@ import com.lanjy.blog.dao.UserRepository;
 import com.lanjy.blog.po.User;
 import com.lanjy.blog.service.UserService;
 import com.lanjy.blog.util.MD5Utils;
+import javassist.NotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 /**
  * @项目名称：lanjyblog
@@ -29,7 +32,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User findUserById(String id) {
-        return userRepository.findOne(new Long(id));
+    public User findUserById(String id) throws NotFoundException {
+        Optional<User> userOptional = userRepository.findById(new Long(id));
+        if (userOptional.isPresent()) {
+            throw new NotFoundException("该User不存在");
+        }
+        return userOptional.get();
     }
 }

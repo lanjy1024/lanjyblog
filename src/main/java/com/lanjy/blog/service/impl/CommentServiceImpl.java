@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * @项目名称：lanjyblog
@@ -84,8 +85,9 @@ public class CommentServiceImpl implements CommentService {
     @Override
     public Comment saveComment(Comment comment) {
         Long parentCommentId = comment.getParentComment().getId();
-        if (parentCommentId != -1) {
-            comment.setParentComment(commentRepository.findOne(parentCommentId));
+        Optional<Comment> optional = commentRepository.findById(parentCommentId);
+        if (optional.isPresent()){
+            comment.setParentComment(optional.get());
         }else {
             comment.setParentComment(null);
         }

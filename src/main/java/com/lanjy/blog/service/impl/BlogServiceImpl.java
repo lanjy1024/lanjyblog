@@ -1,17 +1,12 @@
 package com.lanjy.blog.service.impl;
 
 import com.lanjy.blog.dao.BlogRepository;
-import com.lanjy.blog.dao.TagRepository;
 import com.lanjy.blog.po.Blog;
 import com.lanjy.blog.service.BlogService;
-import com.lanjy.blog.util.MyBeanUtils;
 import com.lanjy.blog.vo.BlogQuery;
 import javassist.NotFoundException;
 import org.commonmark.node.Node;
 import org.commonmark.parser.Parser;
-import org.commonmark.renderer.html.AttributeProvider;
-import org.commonmark.renderer.html.AttributeProviderContext;
-import org.commonmark.renderer.html.AttributeProviderFactory;
 import org.commonmark.renderer.html.HtmlRenderer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,7 +21,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.criteria.*;
-import javax.swing.text.html.HTMLDocument;
 import java.util.*;
 
 /**
@@ -52,10 +46,11 @@ public class BlogServiceImpl implements BlogService {
     @Transactional
     @Override
     public Blog getAndConventBlogContent(Long id) throws NotFoundException{
-        Blog blog = blogRepository.findOne(id);
-        if (blog == null) {
+        Optional<Blog> blogOptional = blogRepository.findById(id);
+        if(!blogOptional.isPresent()){
             throw new NotFoundException("该博客不存在");
         }
+        Blog blog = blogOptional.get();
         //将博客内容content的Markdown格式转化成HTML
         String content = blog.getContent();
         Blog conventBlog = new Blog();
@@ -74,7 +69,11 @@ public class BlogServiceImpl implements BlogService {
 
     @Override
     public Blog getBlog(Long id) {
-        return blogRepository.findOne(id);
+        Optional<Blog> blogOptional = blogRepository.findById(id);
+        if(!blogOptional.isPresent()){
+            return null;
+        }
+        return blogOptional.get();
     }
 
     /**
@@ -129,10 +128,11 @@ public class BlogServiceImpl implements BlogService {
     @Transactional
     @Override
     public Blog updateBlog(Long id, Blog blog) throws NotFoundException {
-        Blog targetBlog = blogRepository.findOne(id);
-        if (targetBlog == null) {
+        Optional<Blog> blogOptional = blogRepository.findById(id);
+        if(!blogOptional.isPresent()){
             throw new NotFoundException("该博客不存在");
         }
+        Blog targetBlog = blogOptional.get();
         blog.setUpdateTime(new Date());
         //将blog的属性值复制给targetBlog，createTime属性值除外，
         String[] ignoreProperties = {"createTime","views"};
@@ -142,15 +142,16 @@ public class BlogServiceImpl implements BlogService {
 
     @Override
     public void deleteBlog(Long id) {
-        blogRepository.delete(id);
+        blogRepository.deleteById(id);
     }
 
     @Override
     public void updateBlogViews(Long id, Blog blog) throws NotFoundException{
-        Blog targetBlog = blogRepository.findOne(id);
-        if (targetBlog == null) {
+        Optional<Blog> blogOptional = blogRepository.findById(id);
+        if(!blogOptional.isPresent()){
             throw new NotFoundException("该博客不存在");
         }
+        Blog targetBlog = blogOptional.get();
         blog.setUpdateTime(new Date());
         blog.setViews(targetBlog.getViews()+1);
         //将blog的属性值复制给targetBlog，createTime属性值除外，
@@ -162,7 +163,7 @@ public class BlogServiceImpl implements BlogService {
     @Override
     public List<Blog> listRecommenedBlogTop(Integer size) {
         Sort sort = new Sort(Sort.Direction.DESC, "updateTime");
-        Pageable pageable = new PageRequest(0,size,sort);
+        Pageable pageable = PageRequest.of(0,size,sort);
         return blogRepository.findTop(pageable);
     }
 

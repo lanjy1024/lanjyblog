@@ -1,6 +1,7 @@
 package com.lanjy.blog.service;
 
 import com.lanjy.blog.po.User;
+import javassist.NotFoundException;
 
 /**
  * @项目名称：lanjyblog
@@ -13,7 +14,7 @@ public interface UserService {
     User checkUser(String userName,String password);
 
 
-    User findUserById(String id);
+    User findUserById(String id) throws NotFoundException;
 
 
 }

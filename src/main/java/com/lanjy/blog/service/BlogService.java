@@ -29,7 +29,7 @@ public interface BlogService {
      */
     Blog getAndConventBlogContent(Long id) throws NotFoundException;
 
-    Blog getBlog(Long id);
+    Blog getBlog(Long id) ;
 
     Page<Blog> listBlog(Pageable pageable,BlogQuery blogQuery);
 

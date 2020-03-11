@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * @项目名称：lanjyblog
@@ -40,7 +41,11 @@ public class TypeServiceImpl implements TypeService {
 
     @Override
     public Type getType(Long id) {
-        return typeRepository.findOne(id);
+        Optional<Type> tagOptional = typeRepository.findById(id);
+        if(!tagOptional.isPresent()){
+            throw new PageNotFoundException("不存在该类型");
+        }
+        return tagOptional.get();
     }
 
     @Override
@@ -56,18 +61,19 @@ public class TypeServiceImpl implements TypeService {
     @Transactional
     @Override
     public Type updateType(Long id, Type type){
-        Type one = typeRepository.findOne(id);
-        if(one == null){
+        Optional<Type> tagOptional = typeRepository.findById(id);
+        if(!tagOptional.isPresent()){
             throw new PageNotFoundException("不存在该类型");
         }
-        BeanUtils.copyProperties(type,one);
-        return typeRepository.save(one);
+        Type type1 = tagOptional.get();
+        BeanUtils.copyProperties(type,type1);
+        return typeRepository.save(type1);
     }
 
     @Transactional
     @Override
     public void deleteType(Long id) {
-        typeRepository.delete(id);
+        typeRepository.deleteById(id);
     }
 
     @Override
@@ -78,7 +84,7 @@ public class TypeServiceImpl implements TypeService {
     @Override
     public List<Type> listTypeTop(Integer size) {
         Sort sort = new Sort(Sort.Direction.DESC,"blogs.size");
-        Pageable pageRequest = new PageRequest(0, size);
+        Pageable pageRequest = PageRequest.of(0, size,sort);
         return typeRepository.findTop(pageRequest);
     }
 }
