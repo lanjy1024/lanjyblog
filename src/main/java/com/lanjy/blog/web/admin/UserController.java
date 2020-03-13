@@ -2,6 +2,8 @@ package com.lanjy.blog.web.admin;
 
 import com.lanjy.blog.po.User;
 import com.lanjy.blog.service.UserService;
+import com.lanjy.blog.util.MD5Utils;
+import javassist.NotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +35,35 @@ public class UserController {
     public String loginPage(){
         logger.info("跳转到登录页面");
         return "admin/login";
+    }
+
+    @GetMapping("/signup")
+    public String signup(){
+        logger.info("跳转到登录页面");
+        return "admin/signup";
+    }
+
+    @PostMapping("/signup")
+    public String signup(@RequestParam String username,
+                        @RequestParam String password,
+                        @RequestParam String email,
+                        HttpSession session,
+                        RedirectAttributes attributes) throws NotFoundException {
+        User userByUsername = userService.findUserByUsername(username);
+        if (userByUsername != null){
+            //错误提示，因为是重定向，所以使用RedirectAttributes，使用Model的话在重定向页面获取不到
+            attributes.addFlashAttribute("message","用户名已存在");
+            logger.info("用户名已存在");
+            return "redirect:/admin/signup";
+        }
+        User user = new User();
+        user.setUsername(username);
+        user.setPassword(MD5Utils.toMD5(password));
+        user.setEmail(email);
+        User user1 = userService.addUser(user);
+        session.setAttribute("user",user1);
+        logger.info("注册成功");
+        return "admin/index";
     }
 
     @GetMapping("/index")
