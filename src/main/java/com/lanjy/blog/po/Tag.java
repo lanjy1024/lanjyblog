@@ -24,10 +24,11 @@ import java.util.List;
 public class Tag {
     /*** 标签id */
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long   id;
     /*** 标签 */
     @NotBlank(message = "标签名称不能为空")
+    @Column(name = "name")
     private String   name;
 
     /*** 博客标签 对 博客：多对多 ;被维护关系*/

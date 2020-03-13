@@ -62,6 +62,8 @@ public class IndexController {
         return "index";
     }
 
+
+
     /**
      * 前端导航栏搜索
      * @param pageable

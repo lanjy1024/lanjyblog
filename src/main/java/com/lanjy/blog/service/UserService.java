@@ -13,8 +13,9 @@ import javassist.NotFoundException;
 public interface UserService {
     User checkUser(String userName,String password);
 
-
     User findUserById(String id) throws NotFoundException;
 
+    User findUserByUsername(String username) throws NotFoundException;
 
+    User addUser(User user);
 }

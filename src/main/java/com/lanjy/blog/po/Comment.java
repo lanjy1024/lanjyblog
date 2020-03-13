@@ -23,7 +23,7 @@ import java.util.List;
 public class Comment {
     /*** 评论id */
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long   id;
     /*** 昵称 */
     private String nickName;

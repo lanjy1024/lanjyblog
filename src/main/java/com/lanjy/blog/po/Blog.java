@@ -25,7 +25,7 @@ import java.util.List;
 public class Blog {
     /*** 博客id */
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long   id;
     /*** 博客标题 */
     private String   title;

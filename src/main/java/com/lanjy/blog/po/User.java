@@ -23,9 +23,9 @@ import java.util.List;
 @Entity
 @Table(name = "t_user")
 public class User {
-    /*** 评论id */
+    /*** User id */
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long   id;
     /*** 昵称 */
     private String nickName;

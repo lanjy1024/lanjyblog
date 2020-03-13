@@ -34,9 +34,19 @@ public class UserServiceImpl implements UserService {
     @Override
     public User findUserById(String id) throws NotFoundException {
         Optional<User> userOptional = userRepository.findById(new Long(id));
-        if (userOptional.isPresent()) {
+        if (!userOptional.isPresent()) {
             throw new NotFoundException("该User不存在");
         }
         return userOptional.get();
+    }
+
+    @Override
+    public User findUserByUsername(String username) throws NotFoundException {
+        return userRepository.findUserByUsername(username);
+    }
+
+    @Override
+    public User addUser(User user) {
+        return userRepository.save(user);
     }
 }

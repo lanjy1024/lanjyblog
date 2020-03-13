@@ -161,11 +161,11 @@
                     <div class="ui orange basic label">
                         <div class="ui images" style="font-size: inherit !important;">
                             <div class="image">
-                                <img src="../static/image/qrcode.png" th:src="@{/image/qrcode.png}" alt="" class="ui rounded bordered image" style="width: 120px">
+                                <img src="../static/image/qrcode.png" th:src="@{/static/image/qrcode.png}" alt="" class="ui rounded bordered image" style="width: 120px">
                                 <div>支付宝</div>
                             </div>
                             <div class="image">
-                                <img src="../static/image/qrcode.png" th:src="@{/image/qrcode.png}" alt="" class="ui rounded bordered image" style="width: 120px">
+                                <img src="../static/image/qrcode.png" th:src="@{/static/image/qrcode.png}" alt="" class="ui rounded bordered image" style="width: 120px">
                                 <div>微信</div>
                             </div>
                         </div>
@@ -179,8 +179,8 @@
                 <div class="ui middle aligned grid">
                     <div class="eleven wide column">
                        <ui class="list">
-                           <li>作者：<span th:text="${blog.user.nickName}">lanjy</span>
-                           <a href="#" th:href="@{/aboutme}" target="_blank">(练习作者)</a></li>
+                           <li>作者：<span th:text="${blog.user.username}">lanjy</span>
+                           <a href="#" th:href="@{/aboutme}" target="_blank">(联系作者)</a></li>
                            <li>发表时间：<span th:text="${#dates.format(blog.createTime,'yyyy-MM-dd')}">2020-01-09</span></li>
                            <li>微信公众号：helloword12358</li>
                            <li>公众号转载：请在文末添加作者公众号二维码</li>

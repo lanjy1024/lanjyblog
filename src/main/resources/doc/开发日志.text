@@ -50,3 +50,7 @@ centOS 6.5关闭防火墙步骤
         永久关闭防火墙：chkconfig iptables off
 两个命令同时运行，运行完成后查看防火墙关闭状态
         service iptables status
+
+
+
+java -jar -Dspring.config.location=application.yml lanjy-blog-1.0-SNAPSHOT.jar

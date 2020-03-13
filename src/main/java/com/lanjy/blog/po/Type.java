@@ -24,7 +24,7 @@ import java.util.List;
 public class Type {
     /*** 类型id */
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long   id;
     /*** 类型 */
     @NotBlank(message = "分类名称不能为空")

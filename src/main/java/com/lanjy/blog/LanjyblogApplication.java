@@ -49,14 +49,16 @@ public class LanjyblogApplication extends WebMvcConfigurationSupport {
     @Override
     protected void addResourceHandlers(ResourceHandlerRegistry registry) {
         //默认静态资源处理
-        registry.addResourceHandler("/**")
-                .addResourceLocations(ResourceUtils.CLASSPATH_URL_PREFIX,"/templates/")
-                .addResourceLocations(ResourceUtils.CLASSPATH_URL_PREFIX,"/static/")
-                .addResourceLocations("classpath:/resources/")
-                .addResourceLocations("classpath:/css/")
-                .addResourceLocations("classpath:/iamge/")
-                .addResourceLocations("classpath:/js/")
-                .addResourceLocations("classpath:/lib/");
+        registry.addResourceHandler("/static/**").addResourceLocations("classpath:/static/");
+//        registry.addResourceHandler("/static/iamge/**").addResourceLocations("classpath:/iamge/");
+//        registry.addResourceHandler("/**")
+//                .addResourceLocations(ResourceUtils.CLASSPATH_URL_PREFIX,"/templates/")
+//                .addResourceLocations(ResourceUtils.CLASSPATH_URL_PREFIX,"/static/")
+//                .addResourceLocations("classpath:/resources/")
+//                .addResourceLocations("classpath:/css/")
+//                .addResourceLocations("classpath:/iamge/")
+//                .addResourceLocations("classpath:/js/")
+//                .addResourceLocations("classpath:/lib/");
         super.addResourceHandlers(registry);
     }
 
