@@ -2,6 +2,8 @@ spring:
   thymeleaf:
     mode: HTML
   profiles:
-    active: dev
+    active: pro
   mvc:
-    static-path-pattern: /static/**
+    static-path-pattern: /image/**
+  resources:
+    static-locations: /home/image

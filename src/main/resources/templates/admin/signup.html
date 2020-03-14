@@ -41,6 +41,12 @@
                         </div>
                         <div class="field">
                             <div class="ui left icon input">
+                                <i class="user icon"></i>
+                                <input type="text" name="nickName" placeholder="请输入昵称">
+                            </div>
+                        </div>
+                        <div class="field">
+                            <div class="ui left icon input">
                                 <i class="eye slash icon"></i>
                                 <input type="password" name="password" placeholder="请输入登录密码">
                             </div>
@@ -51,12 +57,12 @@
                                 <input type="password" name="password1" placeholder="确认密码">
                             </div>
                         </div>
-                        <div class="field">
+                        <!--<div class="field">
                             <div class="ui left icon input">
                                 <i class="envelope icon"></i>
                                 <input type="email" name="email" placeholder="请输入邮箱">
                             </div>
-                        </div>
+                        </div>-->
                         <button class="ui fluid large teal submit button">注册</button>
                     </div>
                     <div class="ui error mini message"></div>
@@ -90,6 +96,19 @@
                     }
                 ]
             },
+            nickName: {
+                identifier  : 'nickName',
+                    rules: [
+                    {
+                        type   : 'empty',
+                        prompt : '请输入昵称'
+                    },
+                    {
+                        type   : 'maxLength[6]',
+                        prompt : '该昵称过长'
+                    }
+                ]
+            },
             password: {
                 identifier : 'password',
                 rules: [
@@ -109,15 +128,6 @@
                     {
                         type   : 'passwordConfirm',
                         prompt : '确认密码输入有误'
-                    }
-                ]
-            },
-            email: {
-                identifier : 'email',
-                rules: [
-                    {
-                        type   : 'email',
-                        prompt : '请输入正确的邮箱格式'
                     }
                 ]
             }

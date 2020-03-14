@@ -46,7 +46,6 @@ public class UserController {
     @PostMapping("/signup")
     public String signup(@RequestParam String username,
                         @RequestParam String password,
-                        @RequestParam String email,
                         HttpSession session,
                         RedirectAttributes attributes) throws NotFoundException {
         User userByUsername = userService.findUserByUsername(username);
@@ -59,7 +58,7 @@ public class UserController {
         User user = new User();
         user.setUsername(username);
         user.setPassword(MD5Utils.toMD5(password));
-        user.setEmail(email);
+        //user.setEmail(email);
         User user1 = userService.addUser(user);
         session.setAttribute("user",user1);
         logger.info("注册成功");

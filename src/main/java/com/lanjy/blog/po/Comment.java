@@ -26,6 +26,7 @@ public class Comment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long   id;
     /*** 昵称 */
+    @Column(name = "nickName")
     private String nickName;
     /*** 邮箱 */
     private String email;
@@ -33,11 +34,12 @@ public class Comment {
     private String avatar;
     /*** 评论内容 */
     private String content;
-
+    @Column(name = "adminComment")
     private boolean adminComment;
 
     /*** 创建时间 */
     @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "createTime")
     private Date createTime;
 
     /*** 博客评论 对 博客：多对多 ;被维护关系*/

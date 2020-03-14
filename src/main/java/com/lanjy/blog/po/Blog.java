@@ -40,6 +40,7 @@ public class Blog {
     /** 博客描述 */
     private String   description;
     /*** 博客封面图片 */
+    @Column(name = "firstPicture")
     private String   firstPicture;
     /*** 博客id */
     private String   flag;
@@ -48,6 +49,7 @@ public class Blog {
     /***赞赏功能开启  */
     private Boolean   appreciation;
     /***版权开启  */
+    @Column(name = "shareStatement")
     private Boolean   shareStatement;
     /***评论开启  */
     private Boolean   commentabled;
@@ -57,9 +59,11 @@ public class Blog {
     private Boolean   published;
     /*** 创建时间 */
     @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "createTime")
     private Date createTime;
     /*** 更新时间 */
     @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "updateTime")
     private Date updateTime;
 
     /*** 博客 对 博客分类：多对一 */

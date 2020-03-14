@@ -28,6 +28,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long   id;
     /*** 昵称 */
+    @Column(name = "nickName")
     private String nickName;
     /*** 用户名 */
     private String username;
@@ -41,8 +42,10 @@ public class User {
     private Integer utype;
     /*** 创建时间 */
     @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "createTime")
     private Date createTime;
     @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "updateTime")
     private Date updateTime;
 
 
