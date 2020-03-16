@@ -7,6 +7,7 @@ import com.lanjy.blog.util.MD5Utils;
 import javassist.NotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -46,7 +47,17 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User addUser(User user) {
-        return userRepository.save(user);
+    public User saveUser(User user) throws NotFoundException {
+        if (user.getId() == null) {
+            return userRepository.save(user);
+        }
+        Optional<User> userOptional = userRepository.findById(user.getId());
+        if (!userOptional.isPresent()) {
+            throw new NotFoundException("该User不存在");
+        }
+        User updateUser = userOptional.get();
+        String[] ignoreProperties = {"createTime","avatar","password","utype"};
+        BeanUtils.copyProperties(user,updateUser, ignoreProperties);
+        return userRepository.save(updateUser);
     }
 }

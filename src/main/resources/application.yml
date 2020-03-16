@@ -7,3 +7,17 @@ spring:
     static-path-pattern: /image/**
   resources:
     static-locations: /home/image
+  servlet:
+    multipart:
+      enabled: true
+      location: #
+      max-file-size: 1MB
+      max-request-size: 10MB
+      resolve-lazily: false
+      file-size-threshold: 0
+ftp:
+  ip: 192.168.1.5
+  port: 21
+  username: ftpuser
+  password: Password
+  basepath: /home/ftpuser/image

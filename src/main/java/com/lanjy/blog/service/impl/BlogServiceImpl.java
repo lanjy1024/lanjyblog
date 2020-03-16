@@ -51,13 +51,14 @@ public class BlogServiceImpl implements BlogService {
             throw new NotFoundException("该博客不存在");
         }
         Blog blog = blogOptional.get();
+        return blog;
         //将博客内容content的Markdown格式转化成HTML
-        String content = blog.getContent();
+        /*String content = blog.getContent();
         Blog conventBlog = new Blog();
         BeanUtils.copyProperties(blog,conventBlog);
         conventBlog.setContent(markdownToHtml(content));
         blogRepository.updateViews(id);
-        return conventBlog;
+        return conventBlog;*/
     }
 
     private String markdownToHtml(String md){

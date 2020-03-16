@@ -12,7 +12,9 @@
     <link rel="stylesheet" href="../static/lib/prism/prism-themes-default.css" th:href="@{/static/lib/prism/prism-themes-default.css}">
     <link rel="stylesheet" href="../static/lib/tocbot/tocbot.css" th:href="@{/static/lib/tocbot/tocbot.css}">
     <link rel="stylesheet" href="../static//lib/editorMd/css/editormd.css" th:href="@{/static/lib/editorMd/css/editormd.css}"/>
+    <link rel="stylesheet" href="../../static/lib/easyUpload/main.css" th:href="@{/static/lib/easyUpload/main.css}">
 
+    <script src="../../static/lib/easyUpload/easyUploader.js" th:href="@{/static/lib/easyUpload/easyUploader.jq.js}"></script>
     <script src="../static/js/jquery-2.1.1.min.js" th:src="@{/static/js/jquery-2.1.1.min.js}"></script>
     <script src="../static/lib/Semantic/semantic.min.js" th:src="@{/static/lib/Semantic/semantic.min.js}"></script>
     <script src="../static/lib/prism/prism-themes-default.js" th:src="@{/static/lib/prism/prism-themes-default.js}"></script>
@@ -30,6 +32,7 @@
                 <a href="#" th:href="@{/admin/blogs}" class="m-item item m-mobile-hide" th:classappend="${n==1} ? 'active'"><i class="mini home icon"></i>博客</a>
                 <a href="#" th:href="@{/admin/types}" class="m-item item m-mobile-hide" th:classappend="${n==2} ? 'active'"><i class="mini idea icon"></i>分类</a>
                 <a href="#" th:href="@{/admin/tags}" class="m-item item m-mobile-hide" th:classappend="${n==3} ? 'active'"><i class="mini tags icon"></i>标签</a>
+                <a href="#" th:href="@{/userinfo}" class="m-item item m-mobile-hide" th:classappend="${n==4} ? 'active'"><i class="mini info icon"></i>个人中心</a>
                 <div class="right menu m-item item m-mobile-hide" >
                     <div class="ui dropdown item">
                         <div class="text">

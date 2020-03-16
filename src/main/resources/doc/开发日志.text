@@ -4,6 +4,7 @@
     背景图资源：https://picsum.photos/images
 插件集成：
     文档编辑器：开源在线 Markdown 编辑器：https://pandao.github.io/editor.md/
+    https://www.cnblogs.com/softidea/p/7808214.html
     内容排版：typo.css：https://typo.sofi.sh/
     动画：animate.css：https://daneden.github.io/animate.css/
     代码高亮：prism：https://prismjs.com/
@@ -57,3 +58,5 @@ java -jar -Dspring.config.location=application.yml lanjy-blog-1.0-SNAPSHOT.jar
 
 ftp服务器搭建
 https://www.jb51.net/article/134478.htm
+
+js图片上传插件easyUpload

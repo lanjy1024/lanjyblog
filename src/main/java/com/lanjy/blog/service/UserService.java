@@ -17,5 +17,5 @@ public interface UserService {
 
     User findUserByUsername(String username) throws NotFoundException;
 
-    User addUser(User user);
+    User saveUser(User user)  throws NotFoundException ;
 }
