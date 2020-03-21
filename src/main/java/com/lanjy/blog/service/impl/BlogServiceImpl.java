@@ -51,6 +51,7 @@ public class BlogServiceImpl implements BlogService {
             throw new NotFoundException("该博客不存在");
         }
         Blog blog = blogOptional.get();
+        blogRepository.updateViews(id);
         return blog;
         //将博客内容content的Markdown格式转化成HTML
         /*String content = blog.getContent();

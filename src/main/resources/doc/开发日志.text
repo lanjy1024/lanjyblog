@@ -52,9 +52,8 @@ centOS 6.5关闭防火墙步骤
 两个命令同时运行，运行完成后查看防火墙关闭状态
         service iptables status
 
-
-
-java -jar -Dspring.config.location=application.yml lanjy-blog-1.0-SNAPSHOT.jar
+项目启动：
+nohup java -jar -Dspring.config.location=application.yml lanjy-blog-1.0-SNAPSHOT.jar &
 
 ftp服务器搭建
 https://www.jb51.net/article/134478.htm

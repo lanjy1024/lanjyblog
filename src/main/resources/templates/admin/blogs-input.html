@@ -75,10 +75,10 @@
                 </div>
                 <!--文章内容-->
                 <div class="field">
-                    <div id="md-content"  name="content"  style="z-index: 1 !important;">
-                        <textarea id="my-editormd-markdown-doc" name="my-editormd-markdown-doc" style="display:none;"></textarea>
+                    <div id="md-content" style="z-index: 1 !important;">
+                        <textarea id="my-editormd-markdown-doc" name="content" style="display:none;"></textarea>
                         <!-- 注意：name属性的值-->
-                        <textarea id="my-editormd-html-code" name="my-editormd-html-code" style="display:none;"></textarea>
+                        <!--<textarea id="my-editormd-html-code" name="my-editormd-html-code" style="display:none;"></textarea>-->
                         <!--<textarea name="content" style="display:none;">#### Disabled options
 
 - TeX (Based on KaTeX);
@@ -327,7 +327,7 @@
             height  : 450,
             syncScrolling : "single",
             path   : "/static/lib/editorMd/lib/",
-            saveHTMLToTextarea : true,//注意3：这个配置，方便post提交表单
+            saveHTMLToTextarea : false,//注意3：这个配置，方便post提交表单
 
 
             emoji: true,//emoji表情，默认关闭
@@ -348,10 +348,10 @@
 
             imageUpload : true,
             imageFormats : ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
-            imageUploadURL : "/smart-api/upload/editormdPic/",
+            imageUploadURL : "/smart-api/upload/editormdPic/"
 
             /*上传图片成功后可以做一些自己的处理*/
-            onload: function () {
+                //onload: function () {
                 //console.log('onload', this);
                 //this.fullscreen();
                 //this.unwatch();
@@ -359,12 +359,12 @@
                 //this.width("100%");
                 //this.height(480);
                 //this.resize("100%", 640);
-            },
+            //},
 
             /**设置主题颜色*/
-            editorTheme: "pastel-on-dark",
-            theme: "gray",
-            previewTheme: "dark"
+            //editorTheme: "pastel-on-dark",
+            //theme: "gray",
+            //previewTheme: "dark"
         });
 
 
