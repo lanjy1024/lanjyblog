@@ -1,15 +1,15 @@
 package com.lanjy.blog.util;
 
 
-import org.apache.commons.net.ftp.FTP;
+import com.lanjy.blog.config.FtpConfig;
 import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPReply;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.stereotype.Component;
 
-import java.io.File;
-import java.io.FileInputStream;
+import javax.annotation.PostConstruct;
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -20,31 +20,29 @@ import java.io.InputStream;
  * @创建人：lanjy
  * @创建时间：2020/3/14
  */
+@Component
 public class FtpFileUtil {
-    //ftp服务器ip地址
-    @Value("${ftp.ip}")
-    private static final String FTP_IP  = "192.168.1.5";
-    //端口号
-    @Value("${ftp.port}")
-    private static final int    FTP_PORT     = 21;
-    //用户名
-    @Value("${ftp.username}")
-    private static final String FTP_USERNAME = "ftpuser";
-    //密码
-    @Value("${ftp.password}")
-    private static final String FTP_PASSWORD = "Password";
-    //图片路径
-    @Value("${ftp.basepath}")
-    private static final String FTP_BASEPATH = "/home/ftpuser/image";
 
-    public  static boolean uploadFile(String originFileName,InputStream input){
+    private static FtpFileUtil ftpFileUtil;
+    private static FtpConfig ftpConfig;
+
+    public FtpFileUtil(FtpConfig ftpConfig) {
+        this.ftpConfig = ftpConfig;
+    }
+
+    @PostConstruct
+    public void init(){
+        ftpFileUtil = this;
+    }
+
+    public static boolean uploadFile(String originFileName,InputStream input){
         boolean success = false;
         FTPClient ftp = new FTPClient();
 //        ftp.setControlEncoding("GBK");
         try {
             int reply;
-            ftp.connect(FTP_IP, FTP_PORT);// 连接FTP服务器
-            ftp.login(FTP_USERNAME, FTP_PASSWORD);// 登录
+            ftp.connect(ftpConfig.getIp(), ftpConfig.getPort());// 连接FTP服务器
+            ftp.login(ftpConfig.getFtpuser(), ftpConfig.getPassword());// 登录
             reply = ftp.getReplyCode();
             //判断是否连接上FTP
             if (!FTPReply.isPositiveCompletion(reply)) {
@@ -52,8 +50,8 @@ public class FtpFileUtil {
                 return success;
             }
             ftp.setFileType(FTPClient.BINARY_FILE_TYPE);
-            ftp.makeDirectory(FTP_BASEPATH );
-            ftp.changeWorkingDirectory(FTP_BASEPATH );
+            ftp.makeDirectory(ftpConfig.getBasepath() );
+            ftp.changeWorkingDirectory(ftpConfig.getBasepath() );
             ftp.storeFile(originFileName,input);
             input.close();
             ftp.logout();

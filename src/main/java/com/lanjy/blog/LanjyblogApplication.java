@@ -1,8 +1,10 @@
 package com.lanjy.blog;
 
+import com.lanjy.blog.config.FtpConfig;
 import com.lanjy.blog.interceptor.LoginInterceptor;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
 import org.springframework.orm.jpa.support.OpenEntityManagerInViewFilter;
@@ -25,6 +27,7 @@ import java.util.List;
 @Controller
 @SpringBootApplication
 //@EnableAutoConfiguration(exclude={DataSourceAutoConfiguration.class})
+@EnableConfigurationProperties(FtpConfig.class)
 public class LanjyblogApplication extends WebMvcConfigurationSupport {
 
     public static void main(String[] args) {

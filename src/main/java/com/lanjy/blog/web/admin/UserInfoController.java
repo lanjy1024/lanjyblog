@@ -10,11 +10,13 @@ import jdk.nashorn.internal.parser.JSONParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import sun.security.jca.GetInstance;
 
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
@@ -36,6 +38,9 @@ public class UserInfoController {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
+    @Value("${aliyun.server.ip}")
+    private String ALIYUN_SERVER_IP;
+
     @Autowired
     UserService userService;
 
@@ -50,15 +55,30 @@ public class UserInfoController {
     @ResponseBody
     public Map<String ,String> avatar(MultipartFile file, HttpSession session, Model model) throws IOException {
         Map<String ,String> res = new HashMap<>();
+        //code为500表示上传失败
+        res.put("code","500");
         String originalFilename = file.getOriginalFilename();
         String suffic = originalFilename.substring(originalFilename.lastIndexOf("."));
         String newFileName = UUID.randomUUID() + suffic;
         InputStream inputStream = file.getInputStream();
-        boolean b = FtpFileUtil.uploadFile(newFileName, inputStream);
-        model.addAttribute("user",session.getAttribute("user"));
-        res.put("code","200");
+        boolean uploadFile = FtpFileUtil.uploadFile(newFileName, inputStream);
+        if (uploadFile){
+            String avatar = "http://"+ALIYUN_SERVER_IP+"/image/"+newFileName;
+            User userInSession = (User) session.getAttribute("user");
+            model.addAttribute("user",session.getAttribute("user"));
+            try {
+                User userById = userService.findUserById(String.valueOf(userInSession.getId()));
+                userById.setAvatar(avatar);
+                User newUser = userService.saveUser(userById);
+                session.setAttribute("user",newUser);
+                //code为200表示上传成功
+                res.put("code","200");
+                res.put("newFileName",avatar);
+            } catch (NotFoundException e) {
+                logger.error(e.getMessage());
+            }
+        }
         return res;
-//        return "avatar :: originalFilename";
     }
 
     @PostMapping("/user")

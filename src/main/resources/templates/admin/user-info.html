@@ -173,8 +173,8 @@
             action: '/userinfo/avatar',
             dataFormat: 'formData',
             fromParam:{},
-            maxCount: 10,
-            maxSize: 3,
+            maxCount: 1,
+            maxSize: 1,
             multiple: true,
             data: null,
             beforeUpload: function(file, data, args) {
@@ -189,6 +189,7 @@
             },
             onSuccess: function(res) {
                 console.log('onSuccess', res);
+                location.reload();
             },
             onError: function(err) {
                 console.log('onError', err);

@@ -18,6 +18,9 @@ spring:
 ftp:
   ip: 192.168.1.5
   port: 21
-  username: ftpuser
+  ftpuser: ftpuser
   password: Password
   basepath: /home/ftpuser/image
+aliyun:
+  server:
+    ip: 192.168.1.5
