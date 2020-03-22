@@ -7,11 +7,19 @@
     <title>LANJYBLOG首页</title>
     <link rel="stylesheet" href="../static/lib/Semantic/semantic.min.css"/>
     <link rel="stylesheet" href="../static/css/index.css"/>
+    <link rel="stylesheet" href="../static/css/stars.css"/>
     <script src="../static/js/jquery-2.1.1.min.js"></script>
     <script src="../static/lib/Semantic/semantic.min.js"></script>
+    <script src="../static/lib/Semantic/semantic.min.js"></script>
+
 
 </head>
-<body>
+<body class="ui">
+<!--背景信息效果 对照<script src="../static/js/stars.js" th:src="@{/static/js/stars.js}"></script>-->
+    <canvas id="canvas"></canvas>
+    <canvas id="snow"></canvas>
+<!--背景信息效果-->
+    <!--<canvas id="snow"></canvas>-->
     <!--导航-->
     <nav th:replace="_fragments::menu(1)" class="ui inverted attached segment">
         <div class="ui container">
@@ -267,7 +275,7 @@
     </div>
 
 <!--底部-->
-    <footer th:replace="_fragments::footer" class="ui inverted vertical segment m-padded-tb-massive ">
+    <footer th:replace="_fragments::footer" class="ui inverted vertical segment m-padded-tb-massive m-home">
         <div class="ui middle aligned container m-opacity-mini m-container-sm">
             <div class="ui inverted divided attached grid aligned stackable">
                 <div class="two wide column">
@@ -305,8 +313,6 @@
             </div>
         </div>
     </footer>
-
-
 
     <script>
         $(".ui.dropdown").dropdown();

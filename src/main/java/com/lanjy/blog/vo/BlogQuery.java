@@ -30,6 +30,7 @@ public class BlogQuery {
     /*** 博客标题 */
     private String  title;
 
+    private Long   userId;
 
     /***是否推荐  */
     private boolean recommend;

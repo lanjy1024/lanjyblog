@@ -93,6 +93,9 @@ public class BlogServiceImpl implements BlogService {
                 if (!"".equals(blogQuery.getTitle()) && blogQuery.getTitle() != null) {
                     predicates.add(cb.like(root.get("title"),"%"+blogQuery.getTitle()+"%"));
                 }
+                if (blogQuery.getUserId() != null) {
+                    predicates.add(cb.equal(root.get("user"),blogQuery.getUserId()));
+                }
                 if (blogQuery.getTypeId() != null) {
                     predicates.add(cb.equal(root.get("type"),blogQuery.getTypeId()));
                 }

@@ -11,7 +11,8 @@
     <link rel="stylesheet" href="../static/css/typo.css">
     <link rel="stylesheet" href="../static/lib/prism/prism-themes-default.css">
     <link rel="stylesheet" href="../static/lib/tocbot/tocbot.css">
-
+    <link rel="stylesheet" href="../static/css/stars.css"/>
+    <script src="../static/js/stars.js"></script>
     <script src="../static/js/jquery-2.1.1.min.js"></script>
     <script src="../static/lib/Semantic/semantic.min.js"></script>
     <script src="../static/lib/prism/prism-themes-default.js"></script>
@@ -20,7 +21,9 @@
     <script src="../static/js/jquery.scrollTo.min.js"></script>
     <script src="../static/js/jquery.waypoints.min.js"></script>
 </head>
-<body  id="body-container" >
+<body  id="body-container"  class="ui">
+    <canvas id="canvas"></canvas>
+    <canvas id="snow"></canvas>
     <!--导航-->
     <nav th:replace="_fragments::menu(1)"  class="ui inverted attached segment ">
         <div class="ui container">

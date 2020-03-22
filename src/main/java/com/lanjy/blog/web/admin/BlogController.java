@@ -61,6 +61,7 @@ public class BlogController {
 
     /**
      * 后台管理页面的博客列表
+     * 只能获取当前登录用户的博客
      * @param pageable
      * @param blogQuery
      * @param model
@@ -68,7 +69,10 @@ public class BlogController {
      */
     @GetMapping
     public String blogs(@PageableDefault(size = 10,sort = {"id"},direction = Sort.Direction.DESC)
-                                       Pageable pageable, BlogQuery blogQuery, Model model){
+                                    Pageable pageable, BlogQuery blogQuery,
+                                    HttpSession session,Model model){
+        User user = (User) session.getAttribute("user");
+        blogQuery.setUserId(user.getId());
         Page<Blog> tagPage = blogService.listBlog(pageable,blogQuery);
         model.addAttribute("page",tagPage);
         model.addAttribute("types",typeService.listType());
@@ -77,6 +81,7 @@ public class BlogController {
 
     /**
      * 博客列表的查询功能
+     * 只能获取当前登录用户的博客
      * @param pageable
      * @param blogQuery
      * @param model
@@ -84,7 +89,10 @@ public class BlogController {
      */
     @PostMapping("/search")
     public String search(@PageableDefault(size = 2,sort = {"id"},direction = Sort.Direction.DESC)
-                                Pageable pageable,BlogQuery blogQuery, Model model){
+                                Pageable pageable,BlogQuery blogQuery,
+                                HttpSession session,Model model){
+        User user = (User) session.getAttribute("user");
+        blogQuery.setUserId(user.getId());
         Page<Blog> tagPage = blogService.listBlog(pageable,blogQuery);
         model.addAttribute("page",tagPage);
         model.addAttribute("types",typeService.listType());

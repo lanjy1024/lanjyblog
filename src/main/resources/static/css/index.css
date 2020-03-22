@@ -1,11 +1,20 @@
 .m-bg{
     background: url("../image/bg (2).jpg") !important;
 }
-
-
-body {
+.m-home {
+    opacity: 0.80;
+}
+html,body{
+    background: none !important;
+}
+.m-body {
     height: 100% !important;
     margin: 0!important;
+    background-image:url(http://images.cnblogs.com/cnblogs_com/Whiteying/1356054/o_cc020ef3d7ca7bcb5a1bc12bbe096b63f624a85a.jpg);
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-size:cover;
+
    /* background: url("../image/bg (2).jpg") !important;*/
 }
 

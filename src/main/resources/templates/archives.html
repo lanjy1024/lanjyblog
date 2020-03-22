@@ -9,7 +9,9 @@
     <link rel="stylesheet" href="../static/css/index.css" th:href="@{/css/index.css}"/>
 </head>
 <body>
-    <!--导航-->
+    <canvas id="canvas"></canvas>
+    <canvas id="snow"></canvas>
+<!--导航-->
     <nav th:replace="_fragments::menu(4)" class="ui inverted attached segment">
         <div class="ui container">
             <div class="ui inverted secondary stackable menu" >
@@ -31,8 +33,7 @@
             <i class="sidebar icon"></i>
         </a>
     </nav>
-
-<!--主页内容区域-->
+    <!--主页内容区域-->
     <div class="m-container-sm m-padded-big">
         <div class="ui container">
             <div class="ui top attached segment">
