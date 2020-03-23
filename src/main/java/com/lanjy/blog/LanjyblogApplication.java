@@ -1,15 +1,13 @@
 package com.lanjy.blog;
 
-import com.lanjy.blog.config.FtpConfig;
 import com.lanjy.blog.interceptor.LoginInterceptor;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
 import org.springframework.orm.jpa.support.OpenEntityManagerInViewFilter;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.stereotype.Controller;
-import org.springframework.util.ResourceUtils;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
@@ -26,8 +24,7 @@ import java.util.List;
  */
 @Controller
 @SpringBootApplication
-//@EnableAutoConfiguration(exclude={DataSourceAutoConfiguration.class})
-@EnableConfigurationProperties(FtpConfig.class)
+@EnableScheduling
 public class LanjyblogApplication extends WebMvcConfigurationSupport {
 
     public static void main(String[] args) {
@@ -53,15 +50,6 @@ public class LanjyblogApplication extends WebMvcConfigurationSupport {
     protected void addResourceHandlers(ResourceHandlerRegistry registry) {
         //默认静态资源处理
         registry.addResourceHandler("/static/**").addResourceLocations("classpath:/static/");
-//        registry.addResourceHandler("/static/iamge/**").addResourceLocations("classpath:/iamge/");
-//        registry.addResourceHandler("/**")
-//                .addResourceLocations(ResourceUtils.CLASSPATH_URL_PREFIX,"/templates/")
-//                .addResourceLocations(ResourceUtils.CLASSPATH_URL_PREFIX,"/static/")
-//                .addResourceLocations("classpath:/resources/")
-//                .addResourceLocations("classpath:/css/")
-//                .addResourceLocations("classpath:/iamge/")
-//                .addResourceLocations("classpath:/js/")
-//                .addResourceLocations("classpath:/lib/");
         super.addResourceHandlers(registry);
     }
 
