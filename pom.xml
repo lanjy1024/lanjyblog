@@ -158,6 +158,13 @@
             <!--<artifactId>commonmark-ext-gfm-tables</artifactId>-->
             <!--<version>0.10.0</version>-->
         <!--</dependency>-->
+
+        <!--spring boot集成quartz start-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-quartz</artifactId>
+        </dependency>
+        <!--spring boot集成quartz end-->
     </dependencies>
 
     <build>

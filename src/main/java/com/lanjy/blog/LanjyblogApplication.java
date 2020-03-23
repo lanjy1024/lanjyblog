@@ -45,7 +45,7 @@ public class LanjyblogApplication extends WebMvcConfigurationSupport {
         // 注册Spring data jpa pageable的参数分解器
         argumentResolvers.add(new PageableHandlerMethodArgumentResolver());
     }
-
+    /** 默认静态资源处理器 **/
     @Override
     protected void addResourceHandlers(ResourceHandlerRegistry registry) {
         //默认静态资源处理
@@ -53,14 +53,15 @@ public class LanjyblogApplication extends WebMvcConfigurationSupport {
         super.addResourceHandlers(registry);
     }
 
+    /** 添加拦截器 **/
     @Override
     protected void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new LoginInterceptor())
                 .addPathPatterns("/admin/**")
+                .addPathPatterns("/userinfo")
                 .excludePathPatterns("/admin")
                 .excludePathPatterns("/lanblog")
-                .excludePathPatterns("/admin/login")
-                .excludePathPatterns("/**");
+                .excludePathPatterns("/admin/login");
 
         super.addInterceptors(registry);
     }
