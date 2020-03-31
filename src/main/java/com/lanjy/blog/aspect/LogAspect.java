@@ -29,7 +29,7 @@ public class LogAspect {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    @Pointcut("execution(* com.lanjy.blog.*.*.*.*(..))")
+    @Pointcut("execution(* com.lanjy.blog.web.*.*.*.*(..))")
     public void log() {
 
     }
@@ -46,10 +46,10 @@ public class LogAspect {
         logger.info("-------------doBefore-------------requset:{}",requsetLog);
     }
 
-    @After("log()")
-    public void doAfter() {
-        logger.info("-------------doAfter-------------");
-    }
+//    @After("log()")
+//    public void doAfter() {
+//        logger.info("-------------doAfter-------------");
+//    }
 
     @AfterReturning(returning = "result", pointcut = "log()")
     public void doAfterReturn(Object result) {
