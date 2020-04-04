@@ -60,7 +60,7 @@ var Star = function () {
     this.orbitY = h / 2;
     this.timePassed = random(10, maxStars);
     // this.speed = random(this.orbitRadius) / 50000;
-    this.speed = random(2, 10) / 1000000000;
+    this.speed = random(2, 10) / 1000;
     //星星移动速度
     this.alpha = random(2, 10) / 100000;
 

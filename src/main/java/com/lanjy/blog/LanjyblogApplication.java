@@ -60,6 +60,7 @@ public class LanjyblogApplication extends WebMvcConfigurationSupport {
                 .addPathPatterns("/admin/**")
                 .addPathPatterns("/userinfo")
                 .excludePathPatterns("/admin")
+                .excludePathPatterns("/admin/signup")
                 .excludePathPatterns("/lanblog")
                 .excludePathPatterns("/admin/login");
 
