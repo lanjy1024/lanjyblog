@@ -4,6 +4,7 @@ import com.lanjy.blog.interceptor.LoginInterceptor;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ImportResource;
 import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
 import org.springframework.orm.jpa.support.OpenEntityManagerInViewFilter;
 import org.springframework.scheduling.annotation.EnableScheduling;
@@ -25,6 +26,7 @@ import java.util.List;
 @Controller
 @SpringBootApplication
 @EnableScheduling
+@ImportResource(locations={"classpath:jobs.xml"})
 public class LanjyblogApplication extends WebMvcConfigurationSupport {
 
     public static void main(String[] args) {

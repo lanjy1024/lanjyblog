@@ -95,5 +95,11 @@ public class CommentServiceImpl implements CommentService {
         return commentRepository.save(comment);
     }
 
+    @Transactional
+    @Override
+    public void updateCommentAvatar(String avatar, String username, String nickName) {
+        commentRepository.updateCommentAvatar(avatar,username,nickName);
+    }
+
 
 }

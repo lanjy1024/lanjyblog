@@ -16,4 +16,6 @@ public interface CommentService {
     List<Comment> ListCommentByBlogId(Long blogId);
 
     Comment saveComment(Comment comment);
+
+    void updateCommentAvatar(String avatar, String username,String nickName);
 }

@@ -45,17 +45,44 @@
 <!--主页内容-->
     <div class="m-container m-padded-big">
         <div class="ui container m-container">
-            <div class="text">
-                <img  class="ui image avatar" th:src="@{${user.avatar}}" src="/jenny.jpg" style="width: 100px;height: 100px" >
-            </div><br>
+
+            <div class="ui grid">
+                <div class="twelve wide stretched column">
+                    <div class="ui segment">
+                        <div class="text">
+                            <img  class="ui image avatar" th:src="@{${user.avatar}}" src="/jenny.jpg" style="width: 100px;height: 100px" >
+                        </div><br>
+                        <div class="ui left labeled input">
+                            <div id="uploader" style="width: 500px"></div>
+                            <div id="m-uploader" class="ui inverted dimmer">
+                                <div class="ui large text loader">上传中</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="four wide column">
+                    <div class="ui vertical fluid right tabular menu">
+                        <a class="item active">
+                            头像
+                        </a>
+                        <a class="item">
+                            微信二维码
+                        </a>
+                        <a class="item">
+                            赞赏码
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+
+
 
 
             <form method="post" action="#" th:action="@{/userinfo/user}" class="ui form">
                 <div class="field">
-                    <div class="ui left labeled input">
-                        <div id="uploader" style="width: 500px"></div>
-                    </div>
-                    <div class="ui left labeled input"></div><div class="ui left labeled input"></div>
+
+
                     <div class="ui left labeled input">
                         <input type="hidden" name="id" th:value="${user.id}">
                     </div>
@@ -180,19 +207,23 @@
             beforeUpload: function(file, data, args) {
                 data.append('token', '387126b0-7b3e-4a2a-86ad-ae5c5edd0ae6TT'); //上传方式为formData时
                 // data.id = file.id; //上传方式为base64时
+                $("#m-uploader").addClass("active");
             },
             onChange: function(fileList) {
                 /* input选中时触发 */
             },
             onRemove: function(removedFiles, files) {
                 console.log('onRemove', deletedFiles);
+                $("#m-uploader").removeClass("active");
             },
             onSuccess: function(res) {
                 console.log('onSuccess', res);
+                $("#m-uploader").removeClass("active");
                 location.reload();
             },
             onError: function(err) {
                 console.log('onError', err);
+                $("#m-uploader").removeClass("active");
             },
         });
         var files = uploader.files; //通过实例的files熟悉可以访问上传文件

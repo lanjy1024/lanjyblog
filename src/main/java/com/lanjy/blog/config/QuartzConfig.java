@@ -1,9 +1,9 @@
 package com.lanjy.blog.config;
 
-import com.lanjy.blog.job.QuartzDemoJob;
-import org.quartz.*;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
+//import com.lanjy.blog.job.QuartzDemoJob;
+//import org.quartz.*;
+//import org.springframework.context.annotation.Bean;
+//import org.springframework.context.annotation.Configuration;
 
 /**
  * @项目名称：lanjyblog

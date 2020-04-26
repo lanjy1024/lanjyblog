@@ -2,7 +2,7 @@ spring:
   thymeleaf:
     mode: HTML
   profiles:
-    active: pro
+    active: dev
   mvc:
     static-path-pattern: /image/**
   resources:
@@ -24,3 +24,4 @@ ftp:
 aliyun:
   server:
     ip: 192.168.1.5
+#scheduling: * * 0/5 * * *

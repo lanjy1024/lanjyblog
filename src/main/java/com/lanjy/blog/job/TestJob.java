@@ -17,12 +17,15 @@ import java.time.LocalDate;
  * @创建人：lanjy
  * @创建时间：2020/3/23
  */
-//@Component
+@Component
 public class TestJob {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    @Scheduled(cron = "0/2 * * * * *")
+    @Scheduled(cron = "0 40 10 ? * *")
     public void job(){
+
+
+
         logger.info("job......"+ LocalDate.now());
     }
 

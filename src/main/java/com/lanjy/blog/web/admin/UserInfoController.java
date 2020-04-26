@@ -1,6 +1,7 @@
 package com.lanjy.blog.web.admin;
 
 import com.lanjy.blog.po.User;
+import com.lanjy.blog.service.CommentService;
 import com.lanjy.blog.service.UserService;
 import com.lanjy.blog.util.FtpFileUtil;
 import com.lanjy.blog.util.MD5Utils;
@@ -42,7 +43,10 @@ public class UserInfoController {
     private String ALIYUN_SERVER_IP;
 
     @Autowired
-    UserService userService;
+    private UserService userService;
+
+    @Autowired
+    private CommentService commentService;
 
     @GetMapping
     public String toUserinfo(HttpSession session,Model model){
@@ -63,22 +67,41 @@ public class UserInfoController {
         InputStream inputStream = file.getInputStream();
         boolean uploadFile = FtpFileUtil.uploadFile(newFileName, inputStream);
         if (uploadFile){
+            logger.info("头像上传成功,{}",newFileName);
+            User newUser = null;
             String avatar = "http://"+ALIYUN_SERVER_IP+"/image/"+newFileName;
             User userInSession = (User) session.getAttribute("user");
             model.addAttribute("user",session.getAttribute("user"));
             try {
-                User userById = userService.findUserById(String.valueOf(userInSession.getId()));
-                userById.setAvatar(avatar);
-                User newUser = userService.saveUser(userById);
+                User user = userService.findUserById(String.valueOf(userInSession.getId()));
+                user.setAvatar(avatar);
+                newUser = userService.saveUser(user);
                 session.setAttribute("user",newUser);
                 //code为200表示上传成功
                 res.put("code","200");
                 res.put("newFileName",avatar);
             } catch (NotFoundException e) {
                 logger.error(e.getMessage());
+                return res;
             }
+
+            try {
+                updateCommentAvatar(newUser);
+            } catch (Exception e) {
+                logger.error("更新评论表中的头像链接异常,{}",e.getMessage());
+            }
+
         }
         return res;
+    }
+
+    /**
+     * 更新评论表中的头像链接
+     * @param newUser
+     */
+    private void updateCommentAvatar(User newUser) {
+        logger.info("更新评论表中的头像链接");
+        commentService.updateCommentAvatar(newUser.getAvatar(),newUser.getUsername(),newUser.getNickName());
     }
 
     @PostMapping("/user")

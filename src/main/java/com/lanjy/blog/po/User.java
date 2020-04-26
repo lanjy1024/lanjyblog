@@ -1,5 +1,6 @@
 package com.lanjy.blog.po;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -38,7 +39,7 @@ public class User {
     private String email;
     /*** 头像 */
     private String avatar;
-    /*** 用户类型 */
+    /*** 用户类型 0-普通用戶，1—系統管理員，2-超級管理員 */
     private Integer utype;
     /*** 创建时间 */
     @Temporal(TemporalType.TIMESTAMP)

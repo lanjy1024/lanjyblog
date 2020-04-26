@@ -20,7 +20,7 @@ import org.springframework.stereotype.Component;
  */
 @Data
 @Component
-@ConfigurationProperties
+@Configuration
 @PropertySource({"classpath:application.yml"})
 public class FtpConfig {
     //ftp服务器ip地址

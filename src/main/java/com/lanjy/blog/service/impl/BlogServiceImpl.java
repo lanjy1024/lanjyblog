@@ -151,6 +151,11 @@ public class BlogServiceImpl implements BlogService {
     }
 
     @Override
+    public int update(Blog blog) {
+        return blogRepository.update(blog);
+    }
+
+    @Override
     public void updateBlogViews(Long id, Blog blog) throws NotFoundException{
         Optional<Blog> blogOptional = blogRepository.findById(id);
         if(!blogOptional.isPresent()){

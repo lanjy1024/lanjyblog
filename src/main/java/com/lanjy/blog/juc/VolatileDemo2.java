@@ -1,5 +1,7 @@
 package com.lanjy.blog.juc;
 
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
@@ -15,30 +17,37 @@ import java.util.concurrent.atomic.AtomicReference;
  */
 public class VolatileDemo2 {
     public static void main(String[] args) throws InterruptedException {
+        ArrayBlockingQueue a ;
         PhoneRepertory phone = new PhoneRepertory();
         //模拟并发：for循环开启20个线程,每个线程对手机库存减1000
         //正常情况是20个线程执行完之后，手机库存为0,但由于volatile无法保证原子性，最终就可能是0，有可能不是0
         //原子性，即最终一致性
+
+        //確保20个线程都跑完
+        CountDownLatch countDownLatch = new CountDownLatch(20);
         for (int i = 0; i < 20; i++) {
             new Thread(()->{
                 for (int j = 0; j < 1000; j++) {
                     //不保证原子性
-                    //phone.sell();
+                    phone.sell();
                     //使用AtomicInteger，保证原子性
                     phone.sellPhone();
                 }
+                countDownLatch.countDown();
             }).start();
         }
 
-        //等待20个项目都执行完毕之后，去查手机库存
+        /*//等待20个项目都执行完毕之后，去查手机库存
         //Thread.activeCount() > 2，线程数大于2（程序启动时有两个线程，main线程和gc线程）
         while(Thread.activeCount() > 2){
             //Thread.yield();线程让步；业务代码使用这个函数需慎重。
             Thread.yield();
         }
         //或者直加个线程休眠10s
-        TimeUnit.SECONDS.sleep(5);
-        System.out.println(Thread.currentThread().getName()+"\t 最终的库存是："+phone.atomicInteger);
+        TimeUnit.SECONDS.sleep(5);*/
+        countDownLatch.await();
+        System.out.println(Thread.currentThread().getName()+"\t 最终的库存volatile number是："+phone.number);
+        System.out.println(Thread.currentThread().getName()+"\t 最终的库存AtomicInteger atomicInteger是："+phone.atomicInteger);
 
     }
 }

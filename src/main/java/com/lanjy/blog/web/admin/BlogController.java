@@ -128,7 +128,8 @@ public class BlogController {
            blog.setType(typeService.getType(blog.getType().getId()));
            blog.setTags(tagService.listTag(blog.getTagIds()));
            if (null != blog.getId()) {
-               blogService.updateBlog(blog.getId(),blog);
+//               blogService.updateBlog(blog.getId(),blog);
+               blogService.update(blog);
            }else {
                blog.setCreateTime(new Date());
                blog.setViews(0);

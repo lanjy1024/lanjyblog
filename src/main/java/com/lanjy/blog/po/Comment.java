@@ -28,6 +28,8 @@ public class Comment {
     /*** 昵称 */
     @Column(name = "nickName")
     private String nickName;
+    /*** 用户名 */
+    private String username;
     /*** 邮箱 */
     private String email;
     /*** 头像 */

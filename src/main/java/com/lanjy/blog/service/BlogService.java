@@ -56,6 +56,8 @@ public interface BlogService {
 
     void deleteBlog(Long id);
 
+    int  update(Blog blog);
+
     void updateBlogViews(Long id, Blog blog) throws NotFoundException;
 
     List<Blog> listRecommenedBlogTop(Integer size);
