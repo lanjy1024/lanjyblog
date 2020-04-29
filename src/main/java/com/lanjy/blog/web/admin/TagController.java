@@ -1,9 +1,7 @@
 package com.lanjy.blog.web.admin;
 
 import com.lanjy.blog.po.Tag;
-import com.lanjy.blog.po.Type;
 import com.lanjy.blog.service.TagService;
-import com.lanjy.blog.service.TypeService;
 import javassist.NotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,7 +15,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 

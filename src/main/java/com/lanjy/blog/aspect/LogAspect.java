@@ -27,9 +27,9 @@ import javax.servlet.http.HttpServletRequest;
 @Component
 public class LogAspect {
 
-    private final Logger logger = LoggerFactory.getLogger(this.getClass());
+    private final Logger logger = LoggerFactory.getLogger(LogAspect.class);
 
-    @Pointcut("execution(* com.lanjy.blog.web.*.*.*.*(..))")
+    @Pointcut("execution(* com.lanjy.blog.web.*.*(..))")
     public void log() {
 
     }
@@ -53,7 +53,8 @@ public class LogAspect {
 
     @AfterReturning(returning = "result", pointcut = "log()")
     public void doAfterReturn(Object result) {
-        logger.info("-------------doAfterReturn-------------result:{}", result);
+//        logger.info("-------------doAfterReturn-------------result:{}", result);
+        logger.info("-------------doAfterReturn-------------result:{}");
     }
 
     @Data

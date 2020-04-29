@@ -1,11 +1,8 @@
 package com.lanjy.blog.web;
 
 import com.lanjy.blog.po.Tag;
-import com.lanjy.blog.po.Type;
 import com.lanjy.blog.service.BlogService;
 import com.lanjy.blog.service.TagService;
-import com.lanjy.blog.service.TypeService;
-import com.lanjy.blog.vo.BlogQuery;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

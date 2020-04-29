@@ -19,11 +19,15 @@ import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import sun.security.jca.GetInstance;
 
 import javax.servlet.http.HttpServletRequest;
 import java.awt.*;
 import java.io.IOException;
+import java.security.PublicKey;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
@@ -41,35 +45,27 @@ public class DemoApplication {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    public static void main(String[] args) {
-        int a = 111;
-        double d = a;
-        float f = a;
-        System.out.println(f);
-        System.out.println(d);
-
-        double ff = 3.4;
-        System.out.println(ff);
+    public static void main(String[] args) throws IOException {
+//        System.out.println(LocalDateTime.now());
+//        System.out.println(new Date());
+        jsoupTest1();
     }
 
 
-    /**
-     * 用户首页，用于登录之后给用户看一些信息
-     * 信息可以从数据库中取，这边作为demo，暂时写死
-     * @return
-     */
-    @RequestMapping("home/{userName}")
-    public String home(@PathVariable String userName) {
-        int count = 100;
-//        if(count == 100){
-//            throw new PageNotFoundException("博客不存在");
-//        }
-//        int i = count/0;
-        logger.info("欢迎您 {}，这是您的第 {} 次登录" ,userName ,count);
-        return "欢迎您" + userName + "，这是您的第 " + count + " 次登录";
+
+    public static void jsoupTest1() throws IOException {
+        String url = "http://www.cnit5.com";
+        Document doc = Jsoup.connect(url).get();
+        Elements elements = doc.getElementsByClass("main-z-n");
+        Elements aElements = elements.get(0).getElementsByTag("a");
+        for (Element element : aElements) {
+            System.out.println(element);
+            System.out.println("=========================================");
+        }
     }
-    @RequestMapping("top250")
-    public List<String> home1(HttpServletRequest request) throws IOException {
+
+
+    public static List<String> jsoupTest() throws IOException {
         String s1 = "https://movie.douban.com/top250?start=";
         String s2 = "&filter=";
         String link = null;   // 电影的链接
@@ -79,42 +75,42 @@ public class DemoApplication {
         String inqStr = null ;   // 获取评价人数
         // 存储待爬取的网址url链接
         ArrayList<String> list = new ArrayList<>();
-        for (int i = 0; i <= 250; i += 25) {
+        for (int i = 0; i <= 50; i += 25) {
             list.add(s1+i+s2);
         }
         // 遍历url集合 爬取网页数据
         List<String> inqList = new ArrayList<>();
         for (String string : list) {
-            Document doc = Jsoup.connect(string).userAgent("Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:60.0) Gecko/20100101 Firefox/60.0").timeout(6000).get();
+//            Document doc = Jsoup.connect(string).userAgent("Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:60.0) Gecko/20100101 Firefox/60.0").timeout(6000).get();
+            Document doc = Jsoup.connect(string).timeout(6000).get();
             Element content = doc.getElementById("content");
             Elements infos = content.getElementsByClass("info");
             for (Element element : infos) {
                 /*Element inq = element.getElementsByClass("inq").get(0);
                 inqStr = inq.html();
-                inqList.add(inqStr);*/
+                inqList.add(inqStr);
                 Element links = element.getElementsByTag("a").get(0);
                 title = links.child(0).html();    // 获取电影名称
-                inqList.add(title);
+                inqList.add(title);*/
 
-                /*Element links = element.getElementsByTag("a").get(0);
+                Element links = element.getElementsByTag("a").get(0);
                 Element star = element.getElementsByClass("star").get(0);
                 Element inq = element.getElementsByClass("inq").get(0);
                 link = links.attr("href");        // 获取电影的链接
                 title = links.child(0).html();    // 获取电影名称
                 score = star.child(1).html();     // 获取电影评分
                 num = star.child(3).html();       // 获取评价人数
-
-                System.out.println(link + "\t" + title + "\t评分" + score + "\t" + num + "\t" + inq.child(0).html());*/
+                System.out.println(link + "\t" + title + "\t评分" + score + "\t" + num + "\t"+inq.html());
             }
         }
-        createWordCloud(inqList);
+        //createWordCloud(inqList);
         return inqList;
     }
 
 
 
     //"E:\\爬虫/wy.png"
-    public void createWordCloud(List<String> books) throws IOException {
+    public static void createWordCloud(List<String> books) throws IOException {
 
         //建立词频分析器，设置词频，以及词语最短长度，此处的参数配置视情况而定即可
         FrequencyAnalyzer frequencyAnalyzer = new FrequencyAnalyzer();
