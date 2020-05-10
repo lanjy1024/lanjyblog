@@ -1,0 +1,39 @@
+logging:
+  config: classpath:logback-spring.xml
+server:
+  port: 8080
+spring:
+  thymeleaf:
+    mode: HTML
+  mvc:
+    static-path-pattern: /image/**
+  resources:
+    static-locations: /home/image
+  servlet:
+    multipart:
+      enabled: true
+      location: #
+      max-file-size: 1MB
+      max-request-size: 10MB
+      resolve-lazily: false
+      file-size-threshold: 0
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://47.112.197.101:3306/lanjyblog?useUnicode=true&zeroDateTimeBehavior=convertToNull&characterEncoding=utf8&autoReconnect=true&allowMultiQueries=true&useSSL=false
+    username: root
+    password: root
+  jpa:
+    hibernate:
+      ddl-auto: validate
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    show-sql: true
+ftp:
+  ip: 192.168.1.5
+  port: 21
+  ftpuser: ftpuser
+  password: Password
+  basepath: /home/ftpuser/image
+aliyun:
+  server:
+    ip: 192.168.1.5

@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
  * @date：2020/4/13
  * @description：
  */
-@Component
+//@Component
 public class ElasticJobTest implements SimpleJob {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 

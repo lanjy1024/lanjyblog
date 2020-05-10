@@ -65,7 +65,7 @@ public class BlogController {
      * @return
      */
     @GetMapping
-    public String blogs(@PageableDefault(size = 10,sort = {"id"},direction = Sort.Direction.DESC)
+    public String blogs(@PageableDefault(size = 5,sort = {"id"},direction = Sort.Direction.DESC)
                                     Pageable pageable, BlogQuery blogQuery,
                                     HttpSession session,Model model){
         User user = (User) session.getAttribute("user");
@@ -85,8 +85,7 @@ public class BlogController {
      * @return
      */
     @PostMapping("/search")
-    public String search(@PageableDefault(size = 2,sort = {"id"},direction = Sort.Direction.DESC)
-                                Pageable pageable,BlogQuery blogQuery,
+    public String search( Pageable pageable,BlogQuery blogQuery,
                                 HttpSession session,Model model){
         User user = (User) session.getAttribute("user");
         blogQuery.setUserId(user.getId());

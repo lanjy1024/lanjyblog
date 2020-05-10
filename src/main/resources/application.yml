@@ -25,3 +25,5 @@ aliyun:
   server:
     ip: 192.168.1.5
 #scheduling: * * 0/5 * * *
+swagger: ##给swagger设置一个开关
+  ebable: true

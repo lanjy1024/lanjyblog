@@ -6,6 +6,9 @@ import com.lanjy.blog.service.BlogService;
 import com.lanjy.blog.service.CommentService;
 import com.lanjy.blog.service.TagService;
 import com.lanjy.blog.service.TypeService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiOperation;
 import javassist.NotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,6 +33,7 @@ import javax.servlet.http.HttpSession;
  * @创建人：lanjy
  * @创建时间：2020/2/11
  */
+@Api(description = "博客门户",value = "博客门户",tags = {"博客门户"})  //使用@Api来修饰类
 @Controller
 public class IndexController {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
@@ -88,6 +92,9 @@ public class IndexController {
      * @return
      * @throws NotFoundException
      */
+    @ApiOperation(value = "通过博客Id来获取博客详情信息",notes = "RestFul风格，需要传博客Id")
+    //使用ApiImplcitParam修饰接口参数
+    @ApiImplicitParam(name = "id",value = "博客Id",required = true)
     @GetMapping("/blog/{id}")
     public String getAndConventBlogContentById(@PathVariable("id") String id, HttpSession session, Model model) throws NotFoundException {
         User user = (User) session.getAttribute("user");
