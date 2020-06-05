@@ -60,3 +60,23 @@ ftp服务器搭建
 https://www.jb51.net/article/134478.htm
 
 js图片上传插件easyUpload
+
+
+
+
+linux下安装jenkins
+https://www.cnblogs.com/uncleyong/p/10742867.html#_label2 jenkins在windows及linux环境下安装
+https://www.cnblogs.com/youqc/p/10488181.html    Linux下安装Git
+https://blog.csdn.net/qq_38270106/article/details/97764483  linux安装maven环境
+
+
+SpringBoot2.0集成Quartz多任务  com.lanjy.blog.quartzjob.config.QuartzConfig
+https://www.jianshu.com/p/dc814e8014b0
+问题:
+1、多任务的问题，多个JobDetail使用同一个Trigger报错：Trigger does not reference given job!，
+   这样的话估计只能创建多组trigger和JobDetail配对
+2、修改QuartzConfig代码中的触发器的cron之后,重启项目,任务还是会按照数据库中的cron时间执行
+3、Quartz动态修改数据库cronExpression（无须重启服务器即可更改定时时间）
+   实现步骤：
+          1).更改表qrtz_cron_triggers的cronExpression
+          2.将表qrtz_triggers的NEXT_FIRE_TIME和PREV_FIRE_TIME的值改为0
