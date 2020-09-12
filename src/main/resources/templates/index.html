@@ -15,8 +15,8 @@
 </head>
 <body class="ui gray">
 <!--背景信息效果 对照<script src="../static/js/stars.js" th:src="@{/static/js/stars.js}"></script>-->
-    <canvas id="canvas"></canvas>
-    <canvas id="snow"></canvas>
+    <!--<canvas id="canvas"></canvas>-->
+    <!--<canvas id="snow"></canvas>-->
 <!--背景信息效果-->
     <!--<canvas id="snow"></canvas>-->
     <!--导航-->
@@ -72,7 +72,7 @@
                                 <div class="eleven wide column">
                                     <h3 class="ui header"><a href="#" th:href="@{/blog/{id}(id=${blog.id})}" class="m-label-color-black" th:text="${blog.title}">记录mysql-5.7.15-winx64的安装过程</a></h3>
                                     <p class="m-text-lined m-text-space m-text-thin" th:text="|${blog.description}......|">不多说，先挂百度网盘链接，需要的自行下载，
-                                        链接：https://pan.baidu.com/s/1MAhJnXgJHIC0NtRQBEZvbg
+                                        链接：https://pan.baidu.com/s/......
                                         提取码：l3cr
                                     </p>
                                     <div class="ui grid">
@@ -102,9 +102,10 @@
 
                                 </div>
                                 <div class="five wide column">
-                                    <a href="#" th:href="@{/blog/{id}(id=${blog.id})}"  target="_blank">
-                                        <img th:src="${blog.firstPicture}" src="../static/image/bg (1).jpg" alt="" class="ui rounded image">
-                                    </a>
+                                    <!--<a href="#" th:href="@{/blog/{id}(id=${blog.id})}"  target="_blank">-->
+                                        <!--<img th:src="${blog.firstPicture}" src="../static/image/avatar/6.jpg" alt="" class="ui small right floated image">-->
+                                    <!--</a>-->
+                                    <img th:src="${blog.firstPicture}" src="../static/image/avatar/6.jpg" alt="" class="ui small right floated image">
                                 </div>
                             </div>
                         </div>

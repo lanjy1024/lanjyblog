@@ -1,3 +1,4 @@
+/*
 package com.lanjy.blog.quartzjob;
 
 import lombok.SneakyThrows;
@@ -6,12 +7,14 @@ import org.quartz.JobExecutionException;
 import org.springframework.scheduling.quartz.QuartzJobBean;
 
 import java.util.Date;
+*/
 
 /**
  * @author：lanjy
  * @date：2020/6/5
  * @description：
  */
+/*
 public class MyQuartzJob extends QuartzJobBean {
 
 
@@ -23,4 +26,4 @@ public class MyQuartzJob extends QuartzJobBean {
         Thread.sleep(2000);
         System.out.println(new Date()+"====MyQuartzJob===完成========");
     }
-}
+}*/

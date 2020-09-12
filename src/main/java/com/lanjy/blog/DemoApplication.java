@@ -19,12 +19,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import sun.security.jca.GetInstance;
+
 
 import javax.servlet.http.HttpServletRequest;
 import java.awt.*;
 import java.io.IOException;
-import java.security.PublicKey;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
@@ -48,9 +47,19 @@ public class DemoApplication {
     public static void main(String[] args) throws IOException {
 //        System.out.println(LocalDateTime.now());
 //        System.out.println(new Date());
-        jsoupTest1();
+//        jsoupTest1();
+
+
+        streamDemo();
     }
 
+    /**
+     * Stream API
+     */
+    private static void streamDemo() {
+        ArrayList<String> list = new ArrayList<>();
+
+    }
 
 
     public static void jsoupTest1() throws IOException {

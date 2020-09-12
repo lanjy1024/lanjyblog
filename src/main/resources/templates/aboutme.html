@@ -9,8 +9,7 @@
     <link rel="stylesheet" href="../static/css/index.css"/>
 </head>
 <body>
-    <canvas id="canvas"></canvas>
-    <canvas id="snow"></canvas>
+
     <!--导航-->
     <nav th:replace="_fragments::menu(5)" class="ui inverted attached segment">
         <div class="ui container">
@@ -35,8 +34,8 @@
     </nav>
 
 <!--主页内容区域-->
-    <div class="m-container m-padded-big">
-        <div class="ui container">
+    <div class=" m-padded-big ui container">
+        <div class="m-container">
             <div class="ui stackable grid">
                 <div class="eleven wide column">
                     <img th:src="@{/static/image/me.jpg}" src="../static/image/me.jpg" alt="" class="ui rounded image">

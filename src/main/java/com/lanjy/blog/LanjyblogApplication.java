@@ -1,22 +1,12 @@
 package com.lanjy.blog;
 
 import com.lanjy.blog.interceptor.LoginInterceptor;
-import org.mybatis.spring.annotation.MapperScan;
-import org.quartz.Scheduler;
-import org.quartz.ee.servlet.QuartzInitializerListener;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.beans.factory.config.PropertiesFactoryBean;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.ImportResource;
-import org.springframework.core.io.ClassPathResource;
 import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
 import org.springframework.orm.jpa.support.OpenEntityManagerInViewFilter;
-import org.springframework.scheduling.annotation.EnableScheduling;
-import org.springframework.scheduling.quartz.SchedulerFactoryBean;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
@@ -29,9 +19,7 @@ import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
-import java.io.IOException;
 import java.util.List;
-import java.util.Properties;
 
 /**
  * @项目名称：lanjyblog
@@ -40,9 +28,8 @@ import java.util.Properties;
  * @创建人：lanjy
  * @创建时间：2020/1/11
  */
-@Controller
 @SpringBootApplication
-@EnableScheduling
+//@EnableScheduling
 @EnableSwagger2
 public class LanjyblogApplication extends WebMvcConfigurationSupport {
 
@@ -103,9 +90,9 @@ public class LanjyblogApplication extends WebMvcConfigurationSupport {
         //默认静态资源处理
         registry.addResourceHandler("/static/**")
                 .addResourceLocations("classpath:/static/");
-        registry.addResourceHandler("/**").
-                addResourceLocations("classpath:/META-INF/resources/").
-                setCachePeriod(0);
+//        registry.addResourceHandler("/**").
+//                addResourceLocations("classpath:/META-INF/resources/").
+//                setCachePeriod(0);
         super.addResourceHandlers(registry);
     }
 

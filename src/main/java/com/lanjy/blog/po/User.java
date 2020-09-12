@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -36,6 +38,8 @@ public class User {
     /*** 密码 */
     private String password;
     /*** 邮箱 */
+    @NotNull(message = "邮箱不能为空")
+    @NotBlank(message = "邮箱不能为空")
     private String email;
     /*** 头像 */
     private String avatar;

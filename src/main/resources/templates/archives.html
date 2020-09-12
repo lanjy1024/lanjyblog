@@ -9,8 +9,8 @@
     <link rel="stylesheet" href="../static/css/index.css" th:href="@{/css/index.css}"/>
 </head>
 <body>
-    <canvas id="canvas"></canvas>
-    <canvas id="snow"></canvas>
+    <!--<canvas id="canvas"></canvas>-->
+    <!--<canvas id="snow"></canvas>-->
 <!--导航-->
     <nav th:replace="_fragments::menu(4)" class="ui inverted attached segment">
         <div class="ui container">
@@ -34,12 +34,12 @@
         </a>
     </nav>
     <!--主页内容区域-->
-    <div class="m-container-sm m-padded-big">
-        <div class="ui container">
+    <div  >
+        <div>
             <div class="ui top attached segment">
                 <div class="ui middle aligned two column grid">
                     <div class="column">
-                        <h3 class="ui teal header">归档</h3>
+                        <!--<h3 class="ui teal header">归档</h3>-->
                     </div>
                     <div class="column right aligned">
                         共 <h2 class="ui orange header m-inline-block" th:text="${countBlog}">115</h2>篇博客

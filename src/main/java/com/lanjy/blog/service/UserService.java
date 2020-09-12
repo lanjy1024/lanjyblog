@@ -3,6 +3,7 @@ package com.lanjy.blog.service;
 import com.lanjy.blog.dao.UserRepository;
 import com.lanjy.blog.po.User;
 import com.lanjy.blog.util.MD5Utils;
+import com.lanjy.blog.util.StringUtil;
 import javassist.NotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -46,12 +47,16 @@ public class UserService {
         if (user.getId() == null) {
             return userRepository.save(user);
         }
+        if (StringUtil.isNotEmpty(user.getAvatar())){
+            String avatar = user.getAvatar().substring(user.getAvatar().lastIndexOf("/static"));
+            user.setAvatar(avatar);
+        }
         Optional<User> userOptional = userRepository.findById(user.getId());
         if (!userOptional.isPresent()) {
             throw new NotFoundException("该User不存在");
         }
         User updateUser = userOptional.get();
-        String[] ignoreProperties = {"createTime","avatar","password","utype"};
+        String[] ignoreProperties = {"createTime","password","utype"};
         BeanUtils.copyProperties(user,updateUser, ignoreProperties);
         return userRepository.save(updateUser);
     }

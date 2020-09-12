@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="../../static/lib/Semantic/semantic.min.css">
     <link rel="stylesheet" href="../../static/css/index.css">
     <link rel="stylesheet" href="../../static/lib/editorMd/css/editormd.css" />
+    <link rel="stylesheet" href="../../static/css/user-info.css" />
 
     <script src="../../static/js/jquery-2.1.1.min.js"></script>
     <script src="../../static/lib/Semantic/semantic.min.js"></script>
@@ -46,7 +47,7 @@
     <div class="m-container m-padded-big">
         <div class="ui container m-container">
 
-            <div class="ui grid">
+           <!-- <div class="ui grid">
                 <div class="twelve wide stretched column">
                     <div class="ui segment">
                         <div class="text">
@@ -73,16 +74,30 @@
                         </a>
                     </div>
                 </div>
+            </div>-->
+
+            <div id="select_avatar" class="ui tiny images">
+                <img class="ui image" src="../../static/image/avatar/1.png">
+                <img class="ui image" src="../../static/image/avatar/2.jpg"  th:src="@{/static/image/avatar/2.jpg}">
+                <img class="ui image" src="../../static/image/avatar/3.jpg">
+                <img class="ui image" src="../../static/image/avatar/4.jpg">
+                <img class="ui image" src="../../static/image/avatar/5.jpg">
+                <img class="ui image" src="../../static/image/avatar/7.jpg">
+                <img class="ui image" src="../../static/image/avatar/8.jpg">
+                <img class="ui image" src="../../static/image/avatar/9.jpg">
+                <img class="ui image" src="../../static/image/avatar/a.jpg">
+                <img class="ui image" src="../../static/image/avatar/b.jpg">
+                <img class="ui image" src="../../static/image/avatar/c.jpg">
+                <img class="ui image" src="../../static/image/avatar/f.jpg">
             </div>
-
-
-
-
 
             <form method="post" action="#" th:action="@{/userinfo/user}" class="ui form">
                 <div class="field">
 
-
+                    <img id="avatar"  class="ui tiny image avatar m_select_img" th:src="@{${user.avatar}}" src="../../static/image/avatar/f.jpg">
+                    <div class="ui left labeled input">
+                        <input type="hidden" id="avatar_input" name="avatar" th:value="${user.avatar}">
+                    </div>
                     <div class="ui left labeled input">
                         <input type="hidden" name="id" th:value="${user.id}">
                     </div>
@@ -104,7 +119,7 @@
 
                 <div class="field ui right aligned container">
                     <button type="button" class="ui button" onclick="window.history.go(-1)">返回</button>
-                    <button class="ui teal submit button" >提交</button>
+                    <button class="ui teal submit button" >保存</button>
                 </div>
                 <!--消息提示-->
                 <div class="ui fail message red" th:unless="${#strings.isEmpty(error_message)}">
@@ -166,6 +181,15 @@
 
 
     <script>
+        //选择投降
+        $("#select_avatar .image").on('click',function () {
+            console.log(this.src);
+            $(this).addClass("m_select_img");
+            $("#avatar").attr("src",this.src);
+            $("#avatar_input").attr("value",this.src);
+            console.log($("#avatar_input").val());
+            // m_select_img
+        });
         //关闭消息提示框
         $(".message .close").on('click',function () {
             $(this).closest('.message').transition('fade');
@@ -193,41 +217,7 @@
             })
         ;
 
-        //easyUploader
-        var uploader = easyUploader({
-            id: "uploader",
-            accept: '.jpg,.png',
-            action: '/userinfo/avatar',
-            dataFormat: 'formData',
-            fromParam:{},
-            maxCount: 1,
-            maxSize: 1,
-            multiple: true,
-            data: null,
-            beforeUpload: function(file, data, args) {
-                data.append('token', '387126b0-7b3e-4a2a-86ad-ae5c5edd0ae6TT'); //上传方式为formData时
-                // data.id = file.id; //上传方式为base64时
-                $("#m-uploader").addClass("active");
-            },
-            onChange: function(fileList) {
-                /* input选中时触发 */
-            },
-            onRemove: function(removedFiles, files) {
-                console.log('onRemove', deletedFiles);
-                $("#m-uploader").removeClass("active");
-            },
-            onSuccess: function(res) {
-                console.log('onSuccess', res);
-                $("#m-uploader").removeClass("active");
-                location.reload();
-            },
-            onError: function(err) {
-                console.log('onError', err);
-                $("#m-uploader").removeClass("active");
-            },
-        });
-        var files = uploader.files; //通过实例的files熟悉可以访问上传文件
-        console.log(files);
+
     </script>
 </body>
 </html>
