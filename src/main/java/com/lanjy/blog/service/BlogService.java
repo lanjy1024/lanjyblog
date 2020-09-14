@@ -2,6 +2,8 @@ package com.lanjy.blog.service;
 
 import com.lanjy.blog.dao.BlogRepository;
 import com.lanjy.blog.po.Blog;
+import com.lanjy.blog.po.User;
+import com.lanjy.blog.util.DateUtils;
 import com.lanjy.blog.vo.BlogQuery;
 import javassist.NotFoundException;
 import org.commonmark.node.Node;
@@ -11,16 +13,16 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.*;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.Model;
 
 import javax.persistence.criteria.*;
 import java.util.*;
+import java.util.function.DoubleToIntFunction;
+import java.util.stream.Collectors;
 
 /**
  * @项目名称：lanjyblog
@@ -178,5 +180,31 @@ public class BlogService {
 
     public Long countBlog() {
         return blogRepository.count();
+    }
+
+
+    public Map<String, List<Blog>> archiveBlogByUsreId(long userid, Model model) {
+        //先获取所有年份List
+        User[] user = {null};
+        Map<String, List<Blog>> map = new HashMap<>();
+        List<Blog> list = blogRepository.findByUserIDGroupYear(userid);
+        if (list == null || list.isEmpty()) {
+            return map;
+        }
+        Optional.ofNullable(list).orElse(new ArrayList<>()).forEach((Blog blog) -> {
+            if (user[0] == null && blog.getUser() != null) {
+                user[0] = blog.getUser();
+            }
+            String formatyyyy = DateUtils.formatyyyy(blog.getCreateTime());
+            blog.setCreateTimeYYYY(formatyyyy);
+        });
+        model.addAttribute("user",user[0]);
+        map = list.stream().collect(Collectors.groupingBy(Blog::getCreateTimeYYYY));
+        return map;
+    }
+
+    public long countBlogByUserID(long userid) {
+
+        return blogRepository.countBlogByUserID(userid);
     }
 }

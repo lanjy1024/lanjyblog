@@ -60,7 +60,7 @@ html,body{
 }
 .m-container-sm{
     min-height: 100% !important;
-    max-width: 70em !important;
+    max-width: 90% !important;
     margin: auto !important;
 }
 .m-padded-tb-mini{
@@ -87,7 +87,7 @@ html,body{
     padding: 1em !important;
 }
 .m-margin-top-small{
-    margin-top: 2.5em !important;
+    margin-top: 1.5em !important;
 }
 .m-margin-mini{
     margin: 0.2em !important;

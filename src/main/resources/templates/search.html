@@ -9,8 +9,6 @@
     <link rel="stylesheet" href="../static/css/index.css">
 </head>
 <body>
-    <canvas id="canvas"></canvas>
-    <canvas id="snow"></canvas>
     <!--导航-->
     <nav th:replace="_fragments::menu(3)" class="ui inverted attached segment">
         <div class="ui container">
@@ -35,8 +33,8 @@
     </nav>
 
 <!--主页内容区域-->
-    <div class="m-container-sm m-padded-big">
-        <div class="ui container">
+    <div class="m-container ui grid stackable ">
+        <div class="sixteen wide column">
             <div class="ui top attached segment">
                 <div class="ui middle aligned two column grid">
                     <div class="column">
@@ -67,11 +65,13 @@
                                 <div class="twelve wide column">
                                     <div class="ui horizontal link list attached ">
                                         <div class="item">
+                                            <a href="#" th:href="@{/blog/{id}(id=${blog.id})}" >
                                             <img src="../static/image/jenny.jpg" th:src="${blog.user.avatar}"
-                                                 style="width: 40px;height: 40px" alt="" class="ui avatar image">
+                                                 style="width: 40px;height: 40px" alt="" class="ui avatar image"></a>
                                         </div>
                                         <div class="item">
-                                            <a href="#" class="header" th:text="${blog.user.nickName}">蓝景优</a>
+                                            <a th:href="@{/blog/{id}(id=${blog.id})}"  href="#"
+                                               class="header" th:text="${blog.user.nickName}">蓝景优</a>
                                         </div>
                                         <div class="item">
                                             <i class="calendar icon" ></i>

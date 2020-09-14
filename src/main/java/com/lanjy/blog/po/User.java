@@ -1,14 +1,10 @@
 package com.lanjy.blog.po;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -38,11 +34,11 @@ public class User {
     /*** 密码 */
     private String password;
     /*** 邮箱 */
-    @NotNull(message = "邮箱不能为空")
-    @NotBlank(message = "邮箱不能为空")
     private String email;
     /*** 头像 */
     private String avatar;
+    /*** 一句话签名 */
+    private String sign;
     /*** 用户类型 0-普通用戶，1—系統管理員，2-超級管理員 */
     private Integer utype;
     /*** 创建时间 */
@@ -69,6 +65,7 @@ public class User {
                 ", email='" + email + '\'' +
                 ", avatar='" + avatar + '\'' +
                 ", utype=" + utype +
+                ", sign=" + sign +
                 ", createTime=" + createTime +
                 ", updateTime=" + updateTime +
                 '}';

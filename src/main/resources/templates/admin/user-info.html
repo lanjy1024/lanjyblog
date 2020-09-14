@@ -94,26 +94,43 @@
             <form method="post" action="#" th:action="@{/userinfo/user}" class="ui form">
                 <div class="field">
 
-                    <img id="avatar"  class="ui tiny image avatar m_select_img" th:src="@{${user.avatar}}" src="../../static/image/avatar/f.jpg">
+
                     <div class="ui left labeled input">
                         <input type="hidden" id="avatar_input" name="avatar" th:value="${user.avatar}">
                     </div>
+                    <img id="avatar" class="ui tiny image avatar m_select_img" style="width: 100px;height:100px;"
+                         th:src="@{${user.avatar}}" src="../../static/image/avatar/f.jpg">
                     <div class="ui left labeled input">
                         <input type="hidden" name="id" th:value="${user.id}">
                     </div>
                     <div class="ui left labeled input">
-                        <label class="ui teal basic label">用户名</label>
-                        <input type="" name="username" th:value="${user.username}" placeholder="用户名">
-                    </div>
-                    <div class="ui left labeled input"></div>
-                    <div class="ui left labeled input">
-                        <label class="ui teal basic label">昵称</label>
+                        <label class="ui teal basic label">昵称&emsp;&emsp;&emsp;</label>
                         <input type="text" name="nickName" th:value="${user.nickName}" placeholder="昵称">
                     </div>
                     <div class="ui left labeled input"></div>
                     <div class="ui left labeled input">
-                        <label class="ui teal basic label">邮箱</label>
+                        <label class="ui teal basic label">用户名&emsp;&emsp;</label>
+                        <input type="" name="username" th:value="${user.username}" placeholder="用户名">
+                    </div>
+                    <div class="ui left labeled input"></div>
+                    <div class="ui left labeled input">
+                        <label class="ui teal basic label">当前密码&emsp;</label>
+                        <input type="password" name="password"  th:value="${user.password}"  placeholder="当前密码">
+                    </div>
+                    <div class="ui left labeled input"></div>
+                    <div class="ui left labeled input">
+                        <label class="ui teal basic label">新密码&emsp;&emsp;</label>
+                        <input type="password" name="password"  th:value="${user.password}"  placeholder="新密码">
+                    </div>
+                    <div class="ui left labeled input"></div>
+                    <div class="ui left labeled input">
+                        <label class="ui teal basic label">邮箱&emsp;&emsp;&emsp;</label>
                         <input type="text" name="email" th:value="${user.email}" placeholder="邮箱">
+                    </div>
+                    <div class="ui left labeled input"></div>
+                    <div class="ui left labeled input">
+                        <label class="ui teal basic label">一句话签名</label>
+                        <input type="text" name="sign" th:value="${user.sign}" placeholder="一句话签名">
                     </div>
                 </div>
 
@@ -183,12 +200,12 @@
     <script>
         //选择投降
         $("#select_avatar .image").on('click',function () {
+            $("#select_avatar .image").removeClass("m_select_img");
+            $(this).toggleClass("m_select_img");
             console.log(this.src);
-            $(this).addClass("m_select_img");
             $("#avatar").attr("src",this.src);
             $("#avatar_input").attr("value",this.src);
             console.log($("#avatar_input").val());
-            // m_select_img
         });
         //关闭消息提示框
         $(".message .close").on('click',function () {
@@ -201,8 +218,8 @@
 
         $('.ui.form')
             .form({
-                title: {
-                    identifier  : 'name',
+                username: {
+                    identifier  : 'username',
                     rules: [
                         {
                             type   : 'empty',
@@ -211,6 +228,28 @@
                         {
                             type   : 'maxLength[12]',
                             prompt : 'Your password must be at least 6 characters'
+                        }
+                    ]
+                },
+                nickName: {
+                    identifier  : 'nickName',
+                    rules: [
+                        {
+                            type   : 'empty',
+                            prompt : 'Please enter your name'
+                        },
+                        {
+                            type   : 'maxLength[12]',
+                            prompt : 'Your password must be at least 6 characters'
+                        }
+                    ]
+                },
+                email:{
+                    identifier  : 'email',
+                    rules: [
+                        {
+                            type   : 'empty',
+                            prompt : 'Please enter your name'
                         }
                     ]
                 }

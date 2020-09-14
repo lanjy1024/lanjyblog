@@ -68,11 +68,12 @@
             <div class="ui top attached segment">
                 <div class="ui horizontal link list attached ">
                     <div class="item">
+                        <a th:href="@{/archives/user/{userid}(userid=${blog.user.id})}" href="#" >
                         <img th:src="${blog.user.avatar}" src="https://i.picsum.photos/id/1011/5472/3648.jpg"
-                             style="width: 40px;height: 40px" alt="" class="ui avatar image">
+                             style="width: 40px;height: 40px" alt="" class="ui avatar image"></a>
                     </div>
                     <div class="item">
-                        <a href="#" class="header" th:text="${blog.user.nickName}">蓝景优</a>
+                        <a th:href="@{/archives/user/{userid}(userid=${blog.user.id})}" href="#" class="header" th:text="${blog.user.nickName}">蓝景优</a>
                     </div>
                     <div class="item">
                         更于：<span th:text="${#dates.format(blog.createTime,'yyyy-MM-dd')}">2020-01-09</span>
@@ -146,11 +147,11 @@
                     <div class="ui threaded comments" style="max-width: 100%;">
                         <h3 class="ui dividing header">评论</h3>
                         <div class="comment" th:each="comment : ${comments}">
-                        <a class="avatar">
+                        <a class="avatar" th:href="@{/archives/user/{userid}(userid=${comment.userId})}" href="#">
                             <img th:src="${comment.avatar}" src="../static/image/matt.jpg">
                         </a>
                         <div class="content">
-                            <a class="author">
+                            <a class="author" th:href="@{/archives/user/{userid}(userid=${comment.userId})}" href="#">
                                 <span th:text="${comment.nickName}">Matt</span>
                                 <div th:if="${comment.adminComment}" class="ui mini basic teal left pointing label m-padded-mini">博主</div>
                             </a>

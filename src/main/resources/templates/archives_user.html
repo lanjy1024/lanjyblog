@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <!-- 移动端预览设置 -->
     <meta name="vireport" content="width=device-width,initial-scale=1.0">
-    <title>归档</title>
+    <title>个人首页</title>
     <link rel="stylesheet" href="../static/lib/Semantic/semantic.min.css" th:href="@{/lib/Semantic/semantic.min.css}"/>
     <link rel="stylesheet" href="../static/css/index.css" th:href="@{/css/index.css}"/>
 </head>
@@ -38,13 +38,20 @@
     <div class="ui grid  stackable">
         <div class="five wide column">
             <div class="ui top attached segment">
-                <div class="ui header">关于lanjyblog</div>
+                <div class="ui header" th:text="${user.nickName}">关于lanjyblog</div>
+            </div>
+            <div class="ui top attached segment">
+            <img id="avatar" class="ui tiny image avatar m_select_img" style="width: 100px;height:100px;"
+                 th:src="@{${user.avatar}}" src="../../static/image/avatar/f.jpg">
             </div>
             <div class="ui attached segment">
+                <p class="m-text-lined m-text-space m-text-thin" th:utext="${user.sign}">......</p>
+            </div>
+            <!--<div class="ui attached segment">
                 <p class="m-text-lined m-text-space m-text-thin">lanjyblog,是我在疫情防控时期，居家隔离时突发奇想开发的一个个人博客网站......</p>
                 <p class="m-text-lined m-text-space m-text-thin">lanjy，程序猿是我，码农也是我，折腾在 0 和 1 世界的90后大叔；一个终身学习无限循环，希望可以结识可以共同成长的小伙伴。</p>
                 <p class="m-text-lined m-text-space m-text-thin">热爱编程，喜欢折腾，正在探索高校学习编程技术的方法......</p>
-            </div>
+            </div>-->
             <div class="ui attached segment">
                 <div class="ui inverted segment">
                     <div class="ui inverted button m-margin-mini">编程</div>

@@ -7,9 +7,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
+import javax.websocket.server.PathParam;
 
 
 /**
@@ -35,6 +35,12 @@ public class ArchivesShowController {
         return "archives";
     }
 
+    @RequestMapping(value="/user/{userid}" , method = RequestMethod.GET )
+    public String archivesByUserId(@PathVariable("userid") long userid, Model model){
 
+        model.addAttribute("archiveMap",blogService.archiveBlogByUsreId(userid,model));
+        model.addAttribute("countBlog",blogService.countBlogByUserID(userid));
+        return "archives_user";
+    }
 
 }

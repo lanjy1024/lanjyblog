@@ -43,234 +43,149 @@
     </nav>
 
 <!--主页内容-->
-    <div class="m-container m-padded-big">
-        <div class="ui container m-margin-top-small">
-            <div class="ui grid  stackable">
-                <!-- 左边部分 -->
-                <!--<div class="one wide column"></div>-->
-                <!-- 中间文章列表部分 -->
-                <div class="seven wide column">
-                    <!--文章列表头部-->
-                    <div class="ui top attached segment">
-                        <div class="ui middle aligned two column grid">
-                            <div class="column">
-                                <h3 class="ui teal header">博客</h3>
-                            </div>
-                            <div class="column right aligned">
-                                共
-                                <h2 class="ui orange header m-inline-block" th:text="${page.totalElements}">
-                                    14
-                                </h2>
-                                篇
-                            </div>
-                        </div>
+    <div class="m-container m-margin-top-small ui grid stackable">
+        <div class="eleven wide column">
+            <!--文章列表头部-->
+            <div class="ui top attached segment">
+                <div class="ui middle aligned two column grid">
+                    <div class="column">
+                        <h3 class="ui teal header">博客</h3>
                     </div>
-                    <!--文章列表-->
-                    <div class="ui attached segment">
-                        <div class="ui padded vertical segment" th:each="blog : ${page.content}">
-                            <div class="ui middle aligned mobile reversed attached grid">
-                                <div class="eleven wide column">
-                                    <h3 class="ui header"><a href="#" th:href="@{/blog/{id}(id=${blog.id})}" class="m-label-color-black" th:text="${blog.title}">记录mysql-5.7.15-winx64的安装过程</a></h3>
-                                    <p class="m-text-lined m-text-space m-text-thin" th:text="|${blog.description}......|">不多说，先挂百度网盘链接，需要的自行下载，
-                                        链接：https://pan.baidu.com/s/......
-                                        提取码：l3cr
-                                    </p>
-                                    <div class="ui grid">
-                                        <div class="twelve wide column">
-                                            <div class="ui horizontal link list attached ">
-                                                <div class="item">
-                                                <img src="../static/image/jenny.jpg" th:src="${blog.user.avatar}"
-                                                    style="width: 40px;height: 40px" alt="" class="ui avatar image">
-                                                </div>
-                                                <div class="item">
-                                                    <a href="#" class="header" th:text="${blog.user.nickName}">蓝景优</a>
-                                                </div>
-                                                <div class="item">
-                                                    <i class="calendar icon" ></i>
-                                                    <span th:text="${#dates.format(blog.createTime,'yyyy-MM-dd')}">2020-01-09</span>
-                                                </div>
-                                                <div class="item">
-                                                    <i class="eye icon" ></i>
-                                                    <span th:text="${blog.views}">2365</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="four wide column">
-                                            <a href="#" class="ui label teal basic " target="_blank" th:text="${blog.type.name}">认知升级</a>
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <div class="five wide column">
-                                    <!--<a href="#" th:href="@{/blog/{id}(id=${blog.id})}"  target="_blank">-->
-                                        <!--<img th:src="${blog.firstPicture}" src="../static/image/avatar/6.jpg" alt="" class="ui small right floated image">-->
-                                    <!--</a>-->
-                                    <img th:src="${blog.firstPicture}" src="../static/image/avatar/6.jpg" alt="" class="ui small right floated image">
-                                </div>
-                            </div>
-                        </div>
-
-                       <!-- <div class="ui padded vertical segment">
-                            <div class="ui mobile reversed attached grid">
-                                <div class="eleven wide column">
-                                    <h3 class="ui header">记录mysql-5.7.15-winx64的安装过程</h3>
-                                    <p class="m-text-lined m-text-space m-text-thin">不多说，先挂百度网盘链接，需要的自行下载，
-                                        链接：https://pan.baidu.com/s/1MAhJnXgJHIC0NtRQBEZvbg
-                                        提取码：l3cr
-                                    </p>
-                                    <div class="ui grid">
-                                        <div class="twelve wide column">
-                                            <div class="ui horizontal link list attached ">
-                                                <div class="item">
-                                                    <img src="https://i.picsum.photos/id/1011/5472/3648.jpg"
-                                                         style="width: 40px;height: 40px" alt="" class="ui avatar image">
-                                                </div>
-                                                <div class="item">
-                                                    <a href="#" class="header">蓝景优</a>
-                                                </div>
-                                                <div class="item">
-                                                    <i class="calendar icon" ></i>2020-01-09
-                                                </div>
-                                                <div class="item">
-                                                    <i class="eye icon" ></i>2365
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="four wide column">
-                                            <a href="#" class="ui label teal basic " target="_blank">认知升级</a>
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <div class="five wide column">
-                                    <a href="#" target="_blank">
-                                        <img src="https://i.picsum.photos/id/1011/5472/3648.jpg" alt="" class="ui rounded image">
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <div class="ui padded vertical segment">
-                            <div class="ui mobile reversed attached grid">
-                                <div class="eleven wide column">
-                                    <h3 class="ui header">记录mysql-5.7.15-winx64的安装过程</h3>
-                                    <p class="m-text-lined m-text-space m-text-thin">不多说，先挂百度网盘链接，需要的自行下载，
-                                        链接：https://pan.baidu.com/s/1MAhJnXgJHIC0NtRQBEZvbg
-                                        提取码：l3cr
-                                    </p>
-                                    <div class="ui grid">
-                                        <div class="twelve wide column">
-                                            <div class="ui horizontal link list attached ">
-                                                <div class="item">
-                                                    <img src="https://i.picsum.photos/id/1011/5472/3648.jpg"
-                                                         style="width: 40px;height: 40px" alt="" class="ui avatar image">
-                                                </div>
-                                                <div class="item">
-                                                    <a href="#" class="header">蓝景优</a>
-                                                </div>
-                                                <div class="item">
-                                                    <i class="calendar icon" ></i>2020-01-09
-                                                </div>
-                                                <div class="item">
-                                                    <i class="eye icon" ></i>2365
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="four wide column">
-                                            <a href="#" class="ui label teal basic " target="_blank">认知升级</a>
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <div class="five wide column">
-                                    <a href="#" target="_blank">
-                                        <img src="https://i.picsum.photos/id/1011/5472/3648.jpg" alt="" class="ui rounded image">
-                                    </a>
-                                </div>
-                            </div>
-                        </div>-->
+                    <div class="column right aligned">
+                        共
+                        <h2 class="ui orange header m-inline-block" th:text="${page.totalElements}">
+                            14
+                        </h2>
+                        篇
                     </div>
-                    <!--文章列表底部-->
-                    <div class="ui bottom attached segment stackable">
-                        <div class="ui middle aligned two column grid" th:if="${page.totalPages}>1">
-                            <div class="column">
-                                <a href="#" class="ui mini basic button" th:href="@{/(page=${page.number}-1)}" th:unless="${page.first}">上一页</a>
-                            </div>
-                            <div class="column">
-                                <a href="#" class="ui mini basic button"  th:href="@{/(page=${page.number}+1)}" th:unless="${page.last}">下一页</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- 右边卡片列表部分 -->
-                <div class="five wide column  stackable">
-                    <!--分类-->
-                    <div class="ui segments">
-                        <div class="ui secondary segment">
-                            <div class="ui two column grid">
-                                <div class="column">
-                                    <i class="idea icon"></i>分类
-                                </div>
-                                <div class="column right aligned">
-                                    <a th:href="@{/types/0}" href="#">more>></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="ui teal segment">
-                            <div class="ui fluid vertical menu">
-                                <a th:each="type : ${types}" th:href="@{/types/{id}(id=${type.id})}" href="#" class="item">
-                                    <span th:text="${type.name}">学习日志</span>
-                                    <div class="ui pointing label left" th:text="${#arrays.length(type.blogs)}">
-                                        13
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <!--标签-->
-                    <div class="ui segments">
-                        <div class="ui secondary segment">
-                            <div class="ui two column grid">
-                                <div class="column">
-                                    <i class="tags icon"></i>标签
-                                </div>
-                                <div class="column right aligned">
-                                    <a href="#" th:href="@{/tags/0}">more>></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="ui teal segment" >
-                            <a th:each="tag : ${tags}" th:href="@{/tags/{id}(id=${tag.id})}"  href="#" class="ui teal basic left label m-margin-mini">
-                                <span th:text="${tag.name}">java</span>
-                            <div class="detail" th:text="${#arrays.length(tag.blogs)}">23</div>
-                        </a>
-
-                        </div>
-                    </div>
-
-                    <!--最新推荐-->
-                    <div class="ui segments">
-                        <div class="ui secondary segment">
-                            <i class="bookmark icon"></i>最新推荐
-                        </div>
-                        <div class="ui teal segment">
-                            <div class="ui fluid vertical menu" th:each="recommenedBlog : ${recommenedBlogs}">
-                                <a href="#" th:href="@{/blog/{id}(id=${recommenedBlog.id})}" target="_blank" class="item">
-                                    <span th:text="${recommenedBlog.title}">记录mysql-5.7.15-winx64的安装过程</span>
-                                </a>
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <!--二维码-->
-                    <!--<div class="ui horizontal divider header">扫码关注我</div>
-                    <div class="ui centered card"  style="width: 200px;height: 200px;">
-                        <img src="../static/image/qrcode.png" th:src="@{/image/qrcode.png}"  class="ui rounded image" alt="" >
-                    </div>-->
                 </div>
             </div>
+            <!--文章列表-->
+            <div class="ui attached segment">
+                <div class="ui padded vertical segment" th:each="blog : ${page.content}">
+                    <div class="ui middle aligned mobile reversed attached grid">
+                        <div class="eleven wide column">
+                            <h3 class="ui header"><a href="#" th:href="@{/blog/{id}(id=${blog.id})}" class="m-label-color-black" th:text="${blog.title}">记录mysql-5.7.15-winx64的安装过程</a></h3>
+                            <p class="m-text-lined m-text-space m-text-thin" th:text="|${blog.description}......|">不多说，先挂百度网盘链接，需要的自行下载，
+                                链接：https://pan.baidu.com/s/......
+                                提取码：l3cr
+                            </p>
+                            <div class="ui grid">
+                                <div class="twelve wide column">
+                                    <div class="ui horizontal link list attached ">
+                                        <div class="item">
+                                            <a th:href="@{/archives/user/{userid}(userid=${blog.user.id})}" href="#" >
+                                                <img src="../static/image/jenny.jpg" th:src="${blog.user.avatar}"
+                                                     style="width: 40px;height: 40px" alt="" class="ui avatar image"></a>
+                                        </div>
+                                        <div class="item">
+                                            <a th:href="@{/archives/user/{userid}(userid=${blog.user.id})}" href="#" class="header" th:text="${blog.user.nickName}">蓝景优</a>
+                                        </div>
+                                        <div class="item">
+                                            <i class="calendar icon" ></i>
+                                            <span th:text="${#dates.format(blog.createTime,'yyyy-MM-dd')}">2020-01-09</span>
+                                        </div>
+                                        <div class="item">
+                                            <i class="eye icon" ></i>
+                                            <span th:text="${blog.views}">2365</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="four wide column">
+                                    <a href="#" class="ui label teal basic " target="_blank" th:text="${blog.type.name}">认知升级</a>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="five wide column">
+                            <!--<a href="#" th:href="@{/blog/{id}(id=${blog.id})}"  target="_blank">-->
+                            <!--<img th:src="${blog.firstPicture}" src="../static/image/avatar/6.jpg" alt="" class="ui small right floated image">-->
+                            <!--</a>-->
+                            <img th:src="${blog.firstPicture}" src="../static/image/avatar/6.jpg" alt="" class="ui small right floated image">
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+            <!--文章列表底部-->
+            <div class="ui bottom attached segment stackable">
+                <div class="ui middle aligned two column grid" th:if="${page.totalPages}>1">
+                    <div class="column">
+                        <a href="#" class="ui mini basic button" th:href="@{/(page=${page.number}-1)}" th:unless="${page.first}">上一页</a>
+                    </div>
+                    <div class="column">
+                        <a href="#" class="ui mini basic button"  th:href="@{/(page=${page.number}+1)}" th:unless="${page.last}">下一页</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 右边卡片列表部分 -->
+        <div class="five wide column  stackable">
+            <!--分类-->
+            <div class="ui segments">
+                <div class="ui secondary segment">
+                    <div class="ui two column grid">
+                        <div class="column">
+                            <i class="idea icon"></i>分类
+                        </div>
+                        <div class="column right aligned">
+                            <a th:href="@{/types/0}" href="#">more>></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="ui teal segment">
+                    <div class="ui fluid vertical menu">
+                        <a th:each="type : ${types}" th:href="@{/types/{id}(id=${type.id})}" href="#" class="item">
+                            <span th:text="${type.name}">学习日志</span>
+                            <div class="ui pointing label left" th:text="${#arrays.length(type.blogs)}">
+                                13
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <!--标签-->
+            <div class="ui segments">
+                <div class="ui secondary segment">
+                    <div class="ui two column grid">
+                        <div class="column">
+                            <i class="tags icon"></i>标签
+                        </div>
+                        <div class="column right aligned">
+                            <a href="#" th:href="@{/tags/0}">more>></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="ui teal segment" >
+                    <a th:each="tag : ${tags}" th:href="@{/tags/{id}(id=${tag.id})}"  href="#" class="ui teal basic left label m-margin-mini">
+                        <span th:text="${tag.name}">java</span>
+                        <div class="detail" th:text="${#arrays.length(tag.blogs)}">23</div>
+                    </a>
+
+                </div>
+            </div>
+
+            <!--最新推荐-->
+            <div class="ui segments">
+                <div class="ui secondary segment">
+                    <i class="bookmark icon"></i>最新推荐
+                </div>
+                <div class="ui teal segment">
+                    <div class="ui fluid vertical menu" th:each="recommenedBlog : ${recommenedBlogs}">
+                        <a href="#" th:href="@{/blog/{id}(id=${recommenedBlog.id})}" target="_blank" class="item">
+                            <span th:text="${recommenedBlog.title}">记录mysql-5.7.15-winx64的安装过程</span>
+                        </a>
+
+                    </div>
+                </div>
+            </div>
+
+            <!--二维码-->
+            <!--<div class="ui horizontal divider header">扫码关注我</div>
+            <div class="ui centered card"  style="width: 200px;height: 200px;">
+                <img src="../static/image/qrcode.png" th:src="@{/image/qrcode.png}"  class="ui rounded image" alt="" >
+            </div>-->
         </div>
     </div>
 

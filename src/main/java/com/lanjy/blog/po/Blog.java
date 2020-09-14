@@ -86,6 +86,9 @@ public class Blog {
     @Transient
     private String   tagIds;
 
+    @Transient
+    private String   createTimeYYYY;
+
     @Override
     public String toString() {
         return "Blog{" +

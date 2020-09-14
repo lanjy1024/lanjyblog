@@ -64,4 +64,28 @@ public interface BlogRepository  extends JpaRepository<Blog,Long>,JpaSpecificati
     //SELECT * FROM t_blog b WHERE DATE_FORMAT(b.create_time,'%Y') = '2020';
     @Query("select b from Blog b where function('date_format',b.createTime,'%Y') = ?1")
     List<Blog> findByYear(String year);
+
+
+    /*@Query("SELECT function('date_format',a.createTime,'%Y') AS createTime," +
+            " a.id," +
+            " a.title," +
+            " a.content," +
+            " a.description," +
+            " a.firstPicture," +
+            " a.flag," +
+            " a.views," +
+            " a.appreciation," +
+            " a.shareStatement," +
+            " a.commentabled," +
+            " a.recommened," +
+            " a.published," +
+            " a.updateTime" +
+            " FROM Blog a WHERE a.user.id = ?1")
+    List<Blog> findByUserIDGroupYear(long userId);*/
+    @Query("SELECT b FROM Blog b WHERE b.published = 1 and  b.user.id = ?1")
+    List<Blog> findByUserIDGroupYear(long userId);
+
+
+    @Query("select count(b) from Blog  b WHERE b.published = 1 and   b.user.id = ?1")
+    long countBlogByUserID(long userid);
 }

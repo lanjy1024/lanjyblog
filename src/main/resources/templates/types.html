@@ -37,97 +37,70 @@
     </nav>
 
 <!--主页内容区域-->
-    <div class="m-container-sm m-padded-big">
-        <div class="ui container">
+    <div class="m-container ui grid stackable ">
+        <div class="sixteen wide column">
             <div class="ui top attached segment">
                 <div class="ui middle aligned two column grid">
                     <div class="column">
                         <h3 class="ui teal header">分类</h3>
                     </div>
                     <div class="column right aligned">
-                        共
-                        <h2 class="ui orange header m-inline-block" th:text="${page.totalElements}">
-                            14
-                        </h2>
-                        篇
+                        共 <h2 class="ui orange header m-inline-block" th:text="${page.totalElements}"> 14 </h2> 篇
                     </div>
                 </div>
             </div>
             <!--标签类型与文章数-->
             <div class="ui top attached segment">
                 <div class="ui inverted segment">
-
                     <a href="#" th:href="@{/types/{id}(id=${type.id})}" th:each="type : ${types}">
                         <div class="ui teal button m-margin-mini" th:classappend="${type.id==activeTypeId} ? 'yellow'">
                             <span th:text="${type.name}">Teal</span>
                             <div class="ui left teal pointing label" th:classappend="${type.id==activeTypeId} ? 'yellow'" th:text="${#arrays.length(type.blogs)}">22</div>
                         </div>
                     </a>
-                    <!--/*-->
-                    <div class="ui inverted button m-margin-mini">
-                        Standard<div class="ui left pointing label">22</div></div>
-                    <div class="ui inverted black button m-margin-mini">
-                        Black<div class="ui left pointing black label">22</div></div>
-                    <div class="ui inverted yellow button m-margin-mini">Y
-                        ellow<div class="ui left pointing label">22</div></div>
-                    <div class="ui inverted green button m-margin-mini">
-                        Green<div class="ui left pointing label">22</div></div>
-                    <div class="ui inverted blue button m-margin-mini">
-                        Blue<div class="ui left pointing label">22</div></div>
-                    <div class="ui inverted orange button m-margin-mini">
-                        Orange<div class="ui left pointing label">22</div></div>
-                    <div class="ui inverted purple button m-margin-mini">
-                        Purple<div class="ui left pointing label">22</div></div>
-                    <div class="ui inverted pink button m-margin-mini">
-                        Pink<div class="ui left pointing label">22</div></div>
-                    <div class="ui inverted red button m-margin-mini">
-                        Red<div class="ui left pointing label">22</div></div>
-                    <div class="ui inverted teal button m-margin-mini">
-                        Teal<div class="ui left pointing label">22</div></div>
-                    <!--*/-->
                 </div>
             </div>
 
             <div class="ui attached segment">
-                <div class="ui padded vertical segment" th:each="blog : ${page.content}">
-                    <div class="ui middle aligned mobile reversed attached grid">
-                        <div class="eleven wide column">
-                            <h3 class="ui header"><a href="#" th:href="@{/blog/{id}(id=${blog.id})}" class="m-label-color-black" th:text="${blog.title}">记录mysql-5.7.15-winx64的安装过程</a></h3>
-                            <p class="m-text-lined m-text-space m-text-thin" th:text="|${blog.description}......|">不多说，先挂百度网盘链接，需要的自行下载，
-                                链接：https://pan.baidu.com/s/1MAhJnXgJHIC0NtRQBEZvbg
-                                提取码：l3cr
-                            </p>
-                            <div class="ui grid">
-                                <div class="twelve wide column">
-                                    <div class="ui horizontal link list attached ">
-                                        <div class="item">
+                <div class="ui middle aligned mobile reversed attached grid" th:each="blog : ${page.content}">
+                    <div class="eleven wide column">
+                        <h3 class="ui header"><a href="#" th:href="@{/blog/{id}(id=${blog.id})}" class="m-label-color-black" th:text="${blog.title}">记录mysql-5.7.15-winx64的安装过程</a></h3>
+                        <p class="m-text-lined m-text-space m-text-thin" th:text="|${blog.description}......|">不多说，先挂百度网盘链接，需要的自行下载，
+                            链接：https://pan.baidu.com/s/1MAhJnXgJHIC0NtRQBEZvbg
+                            提取码：l3cr
+                        </p>
+                        <div class="ui grid">
+                            <div class="twelve wide column">
+                                <div class="ui horizontal link list attached ">
+                                    <div class="item">
+                                        <a th:href="@{/archives/user/{userid}(userid=${blog.user.id})}" href="#" >
                                             <img src="../static/image/jenny.jpg" th:src="${blog.user.avatar}"
-                                                 style="width: 40px;height: 40px" alt="" class="ui avatar image">
-                                        </div>
-                                        <div class="item">
-                                            <a href="#" class="header" th:text="${blog.user.nickName}">蓝景优</a>
-                                        </div>
-                                        <div class="item">
-                                            <i class="calendar icon" ></i>
-                                            <span th:text="${#dates.format(blog.createTime,'yyyy-MM-dd')}">2020-01-09</span>
-                                        </div>
-                                        <div class="item">
-                                            <i class="eye icon" ></i>
-                                            <span th:text="${blog.views}">2365</span>
-                                        </div>
+                                                 style="width: 40px;height: 40px" alt="" class="ui avatar image"></a>
+                                    </div>
+                                    <div class="item">
+                                        <a th:href="@{/archives/user/{userid}(userid=${blog.user.id})}" href="#" class="header" th:text="${blog.user.nickName}">蓝景优</a>
+                                    </div>
+                                    <div class="item">
+                                        <i class="calendar icon" ></i>
+                                        <span th:text="${#dates.format(blog.createTime,'yyyy-MM-dd')}">2020-01-09</span>
+                                    </div>
+                                    <div class="item">
+                                        <i class="eye icon" ></i>
+                                        <span th:text="${blog.views}">2365</span>
                                     </div>
                                 </div>
-                                <div class="four wide column">
-                                    <a href="#" class="ui label teal basic " target="_blank" th:text="${blog.type.name}">认知升级</a>
-                                </div>
                             </div>
+                            <div class="four wide column">
+                                <a href="#" class="ui label teal basic " target="_blank" th:text="${blog.type.name}">认知升级</a>
+                            </div>
+                        </div>
 
-                        </div>
-                        <div class="five wide column">
-                            <a href="#" th:href="@{/blog/{id}(id=${blog.id})}"  target="_blank">
-                                <img th:src="${blog.firstPicture}" src="../static/image/bg (1).jpg" alt="" class="ui rounded image">
-                            </a>
-                        </div>
+                    </div>
+                    <div class="five wide column">
+                        <a href="#" th:href="@{/blog/{id}(id=${blog.id})}"  target="_blank">
+                            <img style="width: 350px;height: 200px"
+                                 th:src="${blog.firstPicture}" src="../static/image/bg (1).jpg" alt="" class="ui rounded image">
+                        </a>
                     </div>
                 </div>
             </div>
