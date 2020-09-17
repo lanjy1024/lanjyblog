@@ -27,13 +27,18 @@
 </head>
 <body>
     <nav th:fragment="menu(n)"  class="ui inverted attached segment ">
-        <div class="ui container">
+        <div class="ui">
             <div class="ui inverted secondary stackable menu" >
+                &emsp;&emsp;&emsp;
                 <h2 class="ui teal header item">Blog管理后台</h2>
-                <a href="#" th:href="@{/admin/blogs}" class="m-item item m-mobile-hide" th:classappend="${n==1} ? 'active'"><i class="mini home icon"></i>博客</a>
-                <a href="#" th:href="@{/admin/types}" class="m-item item m-mobile-hide" th:classappend="${n==2} ? 'active'"><i class="mini idea icon"></i>分类</a>
-                <a href="#" th:href="@{/admin/tags}" class="m-item item m-mobile-hide" th:classappend="${n==3} ? 'active'"><i class="mini tags icon"></i>标签</a>
-                <a href="#" th:href="@{/userinfo}" class="m-item item m-mobile-hide" th:classappend="${n==4} ? 'active'"><i class="mini info icon"></i>个人中心</a>
+                <a href="#" th:href="@{/admin/blogs}" class="m-item item m-mobile-hide" th:classappend="${n==1} ? 'active'">
+                    <i class="mini home icon"></i>&emsp;博客</a>
+                <a href="#" th:href="@{/admin/types}" class="m-item item m-mobile-hide" th:classappend="${n==2} ? 'active'">
+                    <i class="mini idea icon"></i>&emsp;分类</a>
+                <a href="#" th:href="@{/admin/tags}" class="m-item item m-mobile-hide" th:classappend="${n==3} ? 'active'">
+                    <i class="mini tags icon"></i>&emsp;标签</a>
+                <a href="#" th:href="@{/userinfo}" class="m-item item m-mobile-hide" th:classappend="${n==4} ? 'active'">
+                    <i class="mini info icon"></i>&emsp;个人中心</a>
                 <div class="right menu m-item item m-mobile-hide" >
                     <div class="ui dropdown item">
                         <div class="text">
