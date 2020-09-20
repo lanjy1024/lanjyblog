@@ -92,6 +92,7 @@
                     <div class="ui segment right aligned basic">
                         <div class="ui orange basic label animated bounceIn" th:text="${blog.flag}">原创</div>
                     </div>
+                    <h4 class="ui horizontal divider header"><i class="coffee icon"></i> </h4>
                     <h2 class="ui center aligned header animated tada" th:text="${blog.title}" style="color: brown">
                         那些静得只能听见呼吸的日子里，你明白孤独即是生活。</h2>
                 </div>
@@ -99,6 +100,7 @@
                 <div id="editormd">
                     <textarea style="display:none;" th:text="${blog.content}">11111111</textarea>
                 </div>
+                <h4 class="ui horizontal divider header"><i class="heartbeat icon"></i> </h4>
                 <!--标签区域-->
                 <div class="m-padded-lr">
                     <div class="ui basic teal left pointing label" th:each="tag : ${blog.tags}" th:text="${tag.name}">生活感悟</div>

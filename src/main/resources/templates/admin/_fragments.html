@@ -5,24 +5,24 @@
     <!-- 移动端预览设置 -->
     <meta name="vireport" content="width=device-width,initial-scale=1.0">
     <title th:replace="${title}">blog内容</title>
-    <link rel="stylesheet" href="../static/lib/Semantic/semantic.min.css" th:href="@{/static/lib/Semantic/semantic.min.css}">
-    <link rel="stylesheet" href="../static/css/index.css" th:href="@{/static/css/index.css}">
-    <link rel="stylesheet" href="../static/css/animate.css" th:href="@{/static/css/animate.css}">
-    <link rel="stylesheet" href="../static/css/typo.css" th:href="@{/static/css/typo.css}">
-    <link rel="stylesheet" href="../static/lib/prism/prism-themes-default.css" th:href="@{/static/lib/prism/prism-themes-default.css}">
-    <link rel="stylesheet" href="../static/lib/tocbot/tocbot.css" th:href="@{/static/lib/tocbot/tocbot.css}">
-    <link rel="stylesheet" href="../static//lib/editorMd/css/editormd.css" th:href="@{/static/lib/editorMd/css/editormd.css}"/>
-    <link rel="stylesheet" href="../../static/lib/easyUpload/main.css" th:href="@{/static/lib/easyUpload/main.css}">
-    <link rel="stylesheet" href="../../static/css/user-info.css" th:href="@{/static/css/user-info.css}"/>
+    <link rel="stylesheet" href="../../static/lib/Semantic/semantic.min.css" th:href="@{/static/lib/Semantic/semantic.min.css}">
+    <link rel="stylesheet" href="../../static/css/index.css" th:href="@{/static/css/index.css}">
+    <link rel="stylesheet" href="../../static/css/animate.css" th:href="@{/static/css/animate.css}">
+    <link rel="stylesheet" href="../../static/css/typo.css" th:href="@{/static/css/typo.css}">
+    <link rel="stylesheet" href="../../static/lib/prism/prism-themes-default.css" th:href="@{/static/lib/prism/prism-themes-default.css}">
+    <link rel="stylesheet" href="../../static/lib/tocbot/tocbot.css" th:href="@{/static/lib/tocbot/tocbot.css}">
+    <link rel="stylesheet" href="../../static//lib/editorMd/css/editormd.css" th:href="@{/static/lib/editorMd/css/editormd.css}"/>
+    <link rel="stylesheet" href="../../../static/lib/easyUpload/main.css" th:href="@{/static/lib/easyUpload/main.css}">
+    <link rel="stylesheet" href="../../../static/css/user-info.css" th:href="@{/static/css/user-info.css}"/>
 
     <script src="../../static/lib/easyUpload/easyUploader.js" th:href="@{/static/lib/easyUpload/easyUploader.jq.js}"></script>
-    <script src="../static/js/jquery-2.1.1.min.js" th:src="@{/static/js/jquery-2.1.1.min.js}"></script>
-    <script src="../static/lib/Semantic/semantic.min.js" th:src="@{/static/lib/Semantic/semantic.min.js}"></script>
-    <script src="../static/lib/prism/prism-themes-default.js" th:src="@{/static/lib/prism/prism-themes-default.js}"></script>
-    <script src="../static/lib/tocbot/tocbot.min.js" th:src="@{/static/lib/tocbot/tocbot.min.js}"></script>
-    <script src="../static/lib/qrcode/qrcode.min.js" th:src="@{/static/lib/qrcode/qrcode.min.js}"></script>
-    <script src="../static/js/jquery.scrollTo.min.js" th:src="@{/static/js/jquery.scrollTo.min.js}"></script>
-    <script src="../static/js/jquery.waypoints.min.js" th:src="@{/static/js/jquery.waypoints.min.js}"></script>
+    <script src="../../static/js/jquery-2.1.1.min.js" th:src="@{/static/js/jquery-2.1.1.min.js}"></script>
+    <script src="../../static/lib/Semantic/semantic.min.js" th:src="@{/static/lib/Semantic/semantic.min.js}"></script>
+    <script src="../../static/lib/prism/prism-themes-default.js" th:src="@{/static/lib/prism/prism-themes-default.js}"></script>
+    <script src="../../static/lib/tocbot/tocbot.min.js" th:src="@{/static/lib/tocbot/tocbot.min.js}"></script>
+    <script src="../../static/lib/qrcode/qrcode.min.js" th:src="@{/static/lib/qrcode/qrcode.min.js}"></script>
+    <script src="../../static/js/jquery.scrollTo.min.js" th:src="@{/static/js/jquery.scrollTo.min.js}"></script>
+    <script src="../../static/js/jquery.waypoints.min.js" th:src="@{/static/js/jquery.waypoints.min.js}"></script>
 
 </head>
 <body>
@@ -31,14 +31,32 @@
             <div class="ui inverted secondary stackable menu" >
                 &emsp;&emsp;&emsp;
                 <h2 class="ui teal header item">Blog管理后台</h2>
-                <a href="#" th:href="@{/admin/blogs}" class="m-item item m-mobile-hide" th:classappend="${n==1} ? 'active'">
-                    <i class="mini home icon"></i>&emsp;博客</a>
-                <a href="#" th:href="@{/admin/types}" class="m-item item m-mobile-hide" th:classappend="${n==2} ? 'active'">
-                    <i class="mini idea icon"></i>&emsp;分类</a>
-                <a href="#" th:href="@{/admin/tags}" class="m-item item m-mobile-hide" th:classappend="${n==3} ? 'active'">
-                    <i class="mini tags icon"></i>&emsp;标签</a>
-                <a href="#" th:href="@{/userinfo}" class="m-item item m-mobile-hide" th:classappend="${n==4} ? 'active'">
-                    <i class="mini info icon"></i>&emsp;个人中心</a>
+                <div class="ui dropdown item  m-item item m-mobile-hide" >
+                    <div class="text">
+                        <i class="home icon"></i> 系统管理
+                    </div>
+                    <div class="menu ">
+                        <a href="#" class="item"  ><i class="tags icon"></i>用户管理</a>
+                        <a href="#" class="item" ><i class="tags icon"></i>权限设置</a>
+                    </div>
+                </div>
+                <div class="ui dropdown item  m-item item m-mobile-hide" >
+                    <div class="text">
+                        <i class="home icon"></i> 内容管理
+                    </div>
+                    <div class="menu ">
+                        <a href="#" th:href="@{/admin/blogs}" class="m-item item m-mobile-hide" th:classappend="${n==1} ? 'active'">
+                            <i class="mini home icon"></i>&emsp;博客</a>
+                        <a href="#" th:href="@{/admin/types}" class="m-item item m-mobile-hide" th:classappend="${n==2} ? 'active'">
+                            <i class="mini idea icon"></i>&emsp;分类</a>
+                        <a href="#" th:href="@{/admin/tags}" class="m-item item m-mobile-hide" th:classappend="${n==3} ? 'active'">
+                            <i class="mini tags icon"></i>&emsp;标签</a>
+                        <a href="#" th:href="@{/userinfo}" class="m-item item m-mobile-hide" th:classappend="${n==4} ? 'active'">
+                            <i class="mini info icon"></i>&emsp;个人中心</a>
+                    </div>
+                </div>
+
+
                 <div class="right menu m-item item m-mobile-hide" >
                     <div class="ui dropdown item">
                         <div class="text">
@@ -47,7 +65,7 @@
                             <i class="dropdown icon"></i>
                         </div>
                         <div class="menu ">
-                            <a href="#" class="item" th:href="@{/admin/pre/index}">博客前端首页</a>
+                            <a href="#" class="item" th:href="@{/}">博客前端首页</a>
                             <a href="#" class="item" th:href="@{/userinfo}" >个人中心</a>
                             <a href="#" class="item" th:href="@{/admin/logout}">注销</a>
                         </div>
@@ -100,5 +118,8 @@
             </div>
         </div>
     </footer>
+    <script>
+        $(".ui.dropdown").dropdown();
+    </script>
 </body>
 </html>
