@@ -84,15 +84,17 @@
                 </div>
             </div>
             <!--图片区域-->
-            <div class="ui attached segment">
-                <img th:src="${blog.firstPicture}" src="../static/image/0.jfif" alt="" class="ui rounded fluid image">
-            </div>
-            <!--文章内容区域-->
+
+            <!--文章内容区域 +*{option.rate}+-->
             <div class="ui attached padded segment">
-                <div class="ui segment right aligned basic">
-                    <div class="ui orange basic label animated bounceIn" th:text="${blog.flag}">原创</div>
+                <div style="background:url('../static/image/bg (1).jpeg') no-repeat center; background-size:100% 100%; height: 400px;width: 100%"
+                     th:style="'background:url(' + ${blog.firstPicture}+') no-repeat   center; background-size:100% 100%; height: 400px;width: 100%;'" >
+                    <div class="ui segment right aligned basic">
+                        <div class="ui orange basic label animated bounceIn" th:text="${blog.flag}">原创</div>
+                    </div>
+                    <h2 class="ui center aligned header animated tada" th:text="${blog.title}" style="color: brown">
+                        那些静得只能听见呼吸的日子里，你明白孤独即是生活。</h2>
                 </div>
-                <h2 class="ui center aligned header animated tada" th:text="${blog.title}">那些静得只能听见呼吸的日子里，你明白孤独即是生活。</h2>
                 <!--<div id="content" th:utext="${blog.content}" class="m-padded-lr js-toc-content typo typo-selection"> </div>-->
                 <div id="editormd">
                     <textarea style="display:none;" th:text="${blog.content}">11111111</textarea>
@@ -147,12 +149,12 @@
                     <div class="ui threaded comments" style="max-width: 100%;">
                         <h3 class="ui dividing header">评论</h3>
                         <div class="comment" th:each="comment : ${comments}">
-                        <a class="avatar" th:href="@{/archives/user/{userid}(userid=${comment.userId})}" href="#">
-                            <img th:src="${comment.avatar}" src="../static/image/matt.jpg">
+                        <a class="avatar" th:href="@{/archives/user/{userid}(userid=${comment.user.id})}" href="#">
+                            <img th:src="${comment.user.avatar}" src="../static/image/matt.jpg">
                         </a>
                         <div class="content">
-                            <a class="author" th:href="@{/archives/user/{userid}(userid=${comment.userId})}" href="#">
-                                <span th:text="${comment.nickName}">Matt</span>
+                            <a class="author" th:href="@{/archives/user/{userid}(userid=${comment.user.id})}" href="#">
+                                <span th:text="${comment.user.nickName}">Matt</span>
                                 <div th:if="${comment.adminComment}" class="ui mini basic teal left pointing label m-padded-mini">博主</div>
                             </a>
                             <div class="metadata">
@@ -163,19 +165,19 @@
                                 How artistic!
                             </div>
                             <div class="actions">
-                                <a class="reply" th:attr="data-commentid=${comment.id},data-commentnickname=${comment.nickName}"  data-commentid="1" data-commentnickname="Matt" onclick="reply(this)">回复</a>
+                                <a class="reply" th:attr="data-commentid=${comment.id},data-commentnickname=${comment.user.nickName}"  data-commentid="1" data-commentnickname="Matt" onclick="reply(this)">回复</a>
                             </div>
                         </div>
                         <div class="comments" th:if="${#arrays.length(comment.replyComments)}>0">
                             <div class="comment" th:each="replyComment : ${comment.replyComments}">
-                                <a class="avatar">
-                                    <img th:src="${replyComment.avatar}" src="../static/image/matt.jpg">
+                                <a class="avatar" th:href="@{/archives/user/{userid}(userid=${comment.user.id})}" href="#">
+                                    <img th:src="${replyComment.user.avatar}" src="../static/image/matt.jpg">
                                 </a>
                                 <div class="content">
-                                    <a class="author">
-                                        <span th:text="${replyComment.nickName}">Matt</span>
+                                    <a class="author" th:href="@{/archives/user/{userid}(userid=${comment.user.id})}" href="#">
+                                        <span th:text="${replyComment.user.nickName}">Matt</span>
                                         <div th:if="${replyComment.adminComment}" class="ui mini basic teal left pointing label m-padded-mini">博主</div>
-                                        &nbsp;<span th:text="|@ ${replyComment.parentComment.nickName}|" class="m-teal">@Joe</span>
+                                        &nbsp;<span th:text="|@ ${replyComment.parentComment.user.nickName}|" class="m-teal">@Joe</span>
                                     </a>
                                     <div class="metadata">
                                         <span th:text="${#dates.format(replyComment.createTime,'yyyy-MM-dd HH:mm')}">2020-01-09</span>
@@ -185,7 +187,7 @@
                                         How artistic!
                                     </div>
                                     <div class="actions">
-                                        <a class="reply" th:attr="data-commentid=${replyComment.id},data-commentnickname=${replyComment.nickName}"  data-commentid="1" data-commentnickname="Matt" onclick="reply(this)">回复</a>
+                                        <a class="reply" th:attr="data-commentid=${replyComment.id},data-commentnickname=${replyComment.user.nickName}"  data-commentid="1" data-commentnickname="Matt" onclick="reply(this)">回复</a>
                                     </div>
                                 </div>
                             </div>
@@ -253,11 +255,10 @@
             <div class="ui attached teal segment">
                 <div class="ui form">
                     <!--隐含域-->
-                    <input type="hidden" name="userId" th:value="${user.id}">
-                    <input type="hidden" name="avatar" th:value="${user.avatar}">
-                    <input type="hidden" name="nickName" th:value="${user.nickName}">
-                    <input type="hidden" name="username" th:value="${user.username}">
-                    <input type="hidden" name="email" th:value="${user.email}">
+                    <!--<input type="hidden" name="user.avatar" th:value="${user.avatar}">
+                    <input type="hidden" name="user.nickName" th:value="${user.nickName}">
+                    <input type="hidden" name="user.email" th:value="${user.email}">-->
+                    <input type="hidden" name="userId" th:value="${loginUser.id}">
                     <input type="hidden" name="blog.id" th:value="${blog.id}">
                     <input type="hidden" name="parentComment.id" value="-1">
                     <div class="field">
@@ -446,24 +447,6 @@
                             prompt : '发表失败！您当前未登录，请点击右上角下拉按钮进行登录'
                         }
                     ]
-                },
-                avatar: {
-                    identifier  : 'user.avatar',
-                    rules: [
-                        {
-                            type   : 'empty',
-                            prompt : '发表失败！！您当前未登录，请点击右上角下拉按钮进行登录'
-                        }
-                    ]
-                },
-                nickName: {
-                    identifier  : 'user.nickName',
-                    rules: [
-                        {
-                            type   : 'empty',
-                            prompt : '发表失败！！您当前未登录，请点击右上角下拉按钮进行登录'
-                        }
-                    ]
                 }
             });
 
@@ -482,10 +465,10 @@
         
         function postData() {
             $("#comment-container").load(/*[[@{/comments}]]*/"/comments",{
-                "email":$("[name='email']").val(),
+//                "email":$("[name='email']").val(),
+//                "nickName":$("[name='nickName']").val(),
+//                "avatar":$("[name='avatar']").val(),
                 "userId":$("[name='userId']").val(),
-                "nickName":$("[name='nickName']").val(),
-                "avatar":$("[name='avatar']").val(),
                 "blog.id":$("[name='blog.id']").val(),
                 "parentComment.id":$("[name='parentComment.id']").val(),
                 "content":$("[name='content']").val()

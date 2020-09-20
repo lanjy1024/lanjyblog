@@ -46,10 +46,10 @@
                     </form>
                 </div>
                 <div class="right menu m-item item m-mobile-hide" >
-                    <div class="ui dropdown item" th:if="${session.user}">
+                    <div class="ui dropdown item" th:if="${session.loginUser}">
                         <div class="text">
-                            <img  class="ui image avatar" th:src="@{${session.user.avatar}}">
-                            <span th:text="${session.user.nickName}" ></span>
+                            <img  class="ui image avatar" th:src="@{${session.loginUser.avatar}}">
+                            <span th:text="${session.loginUser.nickName}" ></span>
                             <i class="dropdown icon"></i>
                         </div>
                         <div class="menu ">
@@ -58,7 +58,7 @@
                             <a href="#" class="item" th:href="@{/admin/logout}">注销</a>
                         </div>
                     </div>
-                    <div class="ui dropdown item" th:unless="${session.user}">
+                    <div class="ui dropdown item" th:unless="${session.loginUser}">
                         <div class="text">
                             <span >未登录</span>
                             <i class="dropdown icon"></i>

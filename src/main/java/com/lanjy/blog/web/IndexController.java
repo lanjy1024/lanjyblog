@@ -52,87 +52,81 @@ public class IndexController {
 
     /**
      * 博客前端首页
+     *
      * @param pageable
      * @param model
      * @return
      */
     @GetMapping("/")
-    public String index(@PageableDefault(size = 4,sort = {"id"},direction = Sort.Direction.DESC)
-                                    Pageable pageable, Model model){
-        model.addAttribute("page",blogService.listBlog(pageable));
-        model.addAttribute("types",typeService.listTypeTop(6));
-        model.addAttribute("tags",tagService.listTagTop(10));
-        model.addAttribute("recommenedBlogs",blogService.listRecommenedBlogTop(8));
+    public String index(@PageableDefault(size = 4, sort = {"id"}, direction = Sort.Direction.DESC)
+                                Pageable pageable, HttpSession session, Model model) {
+        User user = (User) session.getAttribute("loginUser");
+        if (user != null) {
+            user.setPassword(null);
+            session.setAttribute("loginUser", user);
+            model.addAttribute("loginUser", user);
+        }
+        /*else{
+            session.setAttribute("loginUser",gerUser());
+            model.addAttribute("loginUser", gerUser());
+        }*/
+        model.addAttribute("page", blogService.listBlog(pageable));
+        model.addAttribute("types", typeService.listTypeTop(6));
+        model.addAttribute("tags", tagService.listTagTop(10));
+        model.addAttribute("recommenedBlogs", blogService.listRecommenedBlogTop(8));
         return "index";
     }
 
-
-
+    private User gerUser(){
+        User user = new User();
+        user.setAvatar("/static/image/avatar/7.jpg");
+        user.setNickName("百里守约");
+        user.setUsername("blsy");
+        user.setId(3L);
+        return user;
+    }
     /**
      * 前端导航栏搜索
+     *
      * @param pageable
      * @param model
      * @return
      */
     @PostMapping("/search")
-    public String search(@PageableDefault(size = 4,sort = {"id"},direction = Sort.Direction.DESC)
-                                @RequestParam String query, Pageable pageable, Model model){
-        Page<Blog> blogs = blogService.listBlog(pageable,query);
-        model.addAttribute("page",blogs);
-        model.addAttribute("query",query);
+    public String search(@PageableDefault(size = 4, sort = {"id"}, direction = Sort.Direction.DESC)
+                         @RequestParam String query, Pageable pageable, Model model) {
+
+        Page<Blog> blogs = blogService.listBlog(pageable, query);
+        model.addAttribute("page", blogs);
+        model.addAttribute("query", query);
 
         return "search";
     }
 
     /**
      * 查看博客详情
+     *
      * @param id
      * @param session
      * @param model
      * @return
      * @throws NotFoundException
      */
-    @ApiOperation(value = "通过博客Id来获取博客详情信息",notes = "RestFul风格，需要传博客Id")
+    @ApiOperation(value = "通过博客Id来获取博客详情信息", notes = "RestFul风格，需要传博客Id")
     //使用ApiImplcitParam修饰接口参数
-    @ApiImplicitParam(name = "id",value = "博客Id",required = true)
+    @ApiImplicitParam(name = "id", value = "博客Id", required = true)
     @GetMapping("/blog/{id}")
     public String getAndConventBlogContentById(@PathVariable("id") String id, HttpSession session, Model model) throws NotFoundException {
-        User user = (User) session.getAttribute("user");
-        if (user == null) {
-            model.addAttribute("user",new User());
+        User user = (User) session.getAttribute("loginUser");
+        if (user != null) {
+            user.setPassword(null);
+            model.addAttribute("loginUser", user);
         }else {
-            model.addAttribute("user",user);
+            model.addAttribute("loginUser", new User());
         }
-        model.addAttribute("blog",blogService.getAndConventBlogContent(new Long(id)));
-        model.addAttribute("comments",commentService.ListCommentByBlogId(new Long(id)));
+        model.addAttribute("blog", blogService.getAndConventBlogContent(new Long(id)));
+        model.addAttribute("comments", commentService.ListCommentByBlogId(new Long(id)));
         return "blog";
     }
-
-
-
-
-
-
-
-    /**
-     * 关于我导航栏
-     * @param pageable
-     * @param model
-     * @return
-     */
-    @GetMapping("/aboutme")
-    public String aboutme(@PageableDefault(size = 4,sort = {"id"},direction = Sort.Direction.DESC)
-                                Pageable pageable, Model model){
-//        Page<Blog> blogs = blogService.listBlog(pageable);
-//        long totalElements = blogs.getTotalElements();
-//        model.addAttribute("page",blogService.listBlog(pageable));
-//        model.addAttribute("types",typeService.listTypeTop(6));
-//        model.addAttribute("tags",tagService.listTagTop(10));
-//        model.addAttribute("recommenedBlogs",blogService.listRecommenedBlogTop(8));
-        return "aboutme";
-    }
-
-
-
 
 }

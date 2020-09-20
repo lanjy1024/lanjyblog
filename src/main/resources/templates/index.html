@@ -20,7 +20,7 @@
 <!--背景信息效果-->
     <!--<canvas id="snow"></canvas>-->
     <!--导航-->
-<nav th:fragment="menu(n)" class="ui inverted attached segment">
+<nav th:replace="_fragments::menu(1)"  class="ui inverted attached segment ">
     <div class="ui">
         <div class="ui inverted secondary stackable menu" >
             &emsp;&emsp;&emsp;
@@ -32,22 +32,22 @@
             <a href="#" th:href="@{/tags/0}" class="m-item item m-mobile-hide" th:classappend="${n==3} ? 'active'">
                 <i class="mini tags icon"></i>&emsp;标签</a>
             <div class="m-item item m-mobile-hide" >
-                <form name="search" action="#" th:action="@{/search}" method="post">
+                <form name="search" action="#"  method="post">
                     <div class="ui inverted transparent icon input">
-                        <input name="query" type="text" placeholder="Search..." th:value="${query}">
+                        <input name="query" type="text" placeholder="Search..."  >
                         <i onclick="document.forms['search'].submit()" class="search icon"></i>
                     </div>
                 </form>
             </div>
             <div class="right menu m-item item m-mobile-hide" >
-                <div class="ui dropdown item" th:unless="${session.user}">
+                <div class="ui dropdown item" >
                     <div class="text">
                         <span >未登录</span>
                         <i class="dropdown icon"></i>
                     </div>
                     <div class="menu ">
-                        <a href="#" class="item" th:href="@{/admin}">登录</a>
-                        <a href="#" class="item" th:href="@{/admin/signup}">注册</a>
+                        <a href="#" class="item" >登录</a>
+                        <a href="#" class="item" >注册</a>
                     </div>
                 </div>
             </div>

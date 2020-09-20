@@ -45,8 +45,12 @@ public class UserInfoController {
 
     @GetMapping
     public String toUserinfo(HttpSession session,Model model){
-        User user = (User) session.getAttribute("user");
-        model.addAttribute("user",user);
+        User user = (User) session.getAttribute("loginUser");
+        if (user != null){
+            user.setPassword(null);
+            session.setAttribute("loginUser",user);
+            model.addAttribute("loginUser",user);
+        }
         return "admin/user-info";
     }
 
@@ -65,13 +69,13 @@ public class UserInfoController {
             logger.info("头像上传成功,{}",newFileName);
             User newUser = null;
             String avatar = "http://"+ALIYUN_SERVER_IP+"/image/"+newFileName;
-            User userInSession = (User) session.getAttribute("user");
-            model.addAttribute("user",session.getAttribute("user"));
+            User userInSession = (User) session.getAttribute("loginUser");
+            model.addAttribute("loginUser",session.getAttribute("loginUser"));
             try {
                 User user = userService.findUserById(String.valueOf(userInSession.getId()));
                 user.setAvatar(avatar);
                 newUser = userService.saveUser(user);
-                session.setAttribute("user",newUser);
+                session.setAttribute("loginUser",newUser);
                 //code为200表示上传成功
                 res.put("code","200");
                 res.put("newFileName",avatar);
@@ -96,7 +100,7 @@ public class UserInfoController {
      */
     private void updateCommentAvatar(User newUser) {
         logger.info("更新评论表中的头像链接");
-        commentService.updateCommentAvatar(newUser.getAvatar(),newUser.getUsername(),newUser.getNickName());
+        commentService.updateCommentAvatar(newUser.getAvatar(),newUser.getId());
     }
 
     @PostMapping("/user")

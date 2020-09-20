@@ -51,7 +51,7 @@
                 <div class="twelve wide stretched column">
                     <div class="ui segment">
                         <div class="text">
-                            <img  class="ui image avatar" th:src="@{${user.avatar}}" src="/jenny.jpg" style="width: 100px;height: 100px" >
+                            <img  class="ui image avatar" th:src="@{${loginUser.avatar}}" src="/jenny.jpg" style="width: 100px;height: 100px" >
                         </div><br>
                         <div class="ui left labeled input">
                             <div id="uploader" style="width: 500px"></div>
@@ -96,41 +96,41 @@
 
 
                     <div class="ui left labeled input">
-                        <input type="hidden" id="avatar_input" name="avatar" th:value="${user.avatar}">
+                        <input type="hidden" id="avatar_input" name="avatar" th:value="${session.loginUser.avatar}">
                     </div>
                     <img id="avatar" class="ui tiny image avatar m_select_img" style="width: 100px;height:100px;"
-                         th:src="@{${user.avatar}}" src="../../static/image/avatar/f.jpg">
+                         th:src="@{${session.loginUser.avatar}}" src="../../static/image/avatar/f.jpg">
                     <div class="ui left labeled input">
-                        <input type="hidden" name="id" th:value="${user.id}">
+                        <input type="hidden" name="id" th:value="${session.loginUser.id}">
                     </div>
                     <div class="ui left labeled input">
                         <label class="ui teal basic label">昵称&emsp;&emsp;&emsp;</label>
-                        <input type="text" name="nickName" th:value="${user.nickName}" placeholder="昵称">
+                        <input type="text" name="nickName" th:value="${session.loginUser.nickName}" placeholder="昵称">
                     </div>
                     <div class="ui left labeled input"></div>
                     <div class="ui left labeled input">
                         <label class="ui teal basic label">用户名&emsp;&emsp;</label>
-                        <input type="" name="username" th:value="${user.username}" placeholder="用户名">
+                        <input type="" name="username" th:value="${session.loginUser.username}" placeholder="用户名">
                     </div>
                     <div class="ui left labeled input"></div>
                     <div class="ui left labeled input">
                         <label class="ui teal basic label">当前密码&emsp;</label>
-                        <input type="password" name="password"  th:value="${user.password}"  placeholder="当前密码">
+                        <input type="password" name="password"  th:value="${session.loginUser.password}"  placeholder="当前密码">
                     </div>
                     <div class="ui left labeled input"></div>
                     <div class="ui left labeled input">
                         <label class="ui teal basic label">新密码&emsp;&emsp;</label>
-                        <input type="password" name="password"  th:value="${user.password}"  placeholder="新密码">
+                        <input type="password" name="password"  th:value="${session.loginUser.password}"  placeholder="新密码">
                     </div>
                     <div class="ui left labeled input"></div>
                     <div class="ui left labeled input">
                         <label class="ui teal basic label">邮箱&emsp;&emsp;&emsp;</label>
-                        <input type="text" name="email" th:value="${user.email}" placeholder="邮箱">
+                        <input type="text" name="email" th:value="${session.loginUser.email}" placeholder="邮箱">
                     </div>
                     <div class="ui left labeled input"></div>
                     <div class="ui left labeled input">
                         <label class="ui teal basic label">一句话签名</label>
-                        <input type="text" name="sign" th:value="${user.sign}" placeholder="一句话签名">
+                        <input type="text" name="sign" th:value="${loginUser.sign}" placeholder="一句话签名">
                     </div>
                 </div>
 

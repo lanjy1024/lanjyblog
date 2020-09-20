@@ -93,8 +93,8 @@ public class CommentService {
     }
 
     @Transactional
-    public void updateCommentAvatar(String avatar, String username, String nickName) {
-        commentRepository.updateCommentAvatar(avatar,username,nickName);
+    public void updateCommentAvatar(String avatar, Long userId) {
+        commentRepository.updateCommentAvatar(avatar,userId);
     }
 
 

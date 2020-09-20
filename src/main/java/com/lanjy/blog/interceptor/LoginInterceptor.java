@@ -23,7 +23,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter{
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         log.info("LoginInterceptor拦截器____开始拦截");
-        User user = (User) request.getSession().getAttribute("user");
+        User user = (User) request.getSession().getAttribute("loginUser");
         if (user == null){
             //用户没有登录，请求重定向
             response.sendRedirect("/");

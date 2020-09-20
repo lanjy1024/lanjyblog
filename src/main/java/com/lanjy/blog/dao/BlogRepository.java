@@ -82,7 +82,7 @@ public interface BlogRepository  extends JpaRepository<Blog,Long>,JpaSpecificati
             " a.updateTime" +
             " FROM Blog a WHERE a.user.id = ?1")
     List<Blog> findByUserIDGroupYear(long userId);*/
-    @Query("SELECT b FROM Blog b WHERE b.published = 1 and  b.user.id = ?1")
+    @Query("SELECT b FROM Blog b WHERE b.published = 1 and  b.user.id = ?1 order by b.createTime desc")
     List<Blog> findByUserIDGroupYear(long userId);
 
 

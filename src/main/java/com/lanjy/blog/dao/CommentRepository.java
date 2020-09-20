@@ -23,6 +23,6 @@ public interface CommentRepository extends JpaRepository<Comment,Long>,JpaSpecif
     List<Comment> findByBlogIdAndParentCommentNull(Long blogId,Sort sort);
 
     @Modifying
-    @Query("update  Comment b set b.avatar = ?1, b.nickName = ?3 where b.username = ?2")
-    void updateCommentAvatar(String avatar, String username, String nickName);
+    @Query("update  Comment b set b.user.avatar = ?1, b.user.id = ?2")
+    void updateCommentAvatar(String avatar, Long userId);
 }

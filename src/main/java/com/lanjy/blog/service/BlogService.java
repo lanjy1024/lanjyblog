@@ -199,7 +199,8 @@ public class BlogService {
             blog.setCreateTimeYYYY(formatyyyy);
         });
         model.addAttribute("user",user[0]);
-        map = list.stream().collect(Collectors.groupingBy(Blog::getCreateTimeYYYY));
+        map = list.stream().sorted(Comparator.comparing(Blog::getCreateTime).reversed())
+                .collect(Collectors.groupingBy(Blog::getCreateTimeYYYY));
         return map;
     }
 

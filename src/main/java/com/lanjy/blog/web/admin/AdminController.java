@@ -67,18 +67,18 @@ public class AdminController {
         user.setCreateTime(new Date());
         //user.setEmail(email);
         User user1 = userService.saveUser(user);
-        session.setAttribute("user",user1);
-        model.addAttribute("user",user1);
+        session.setAttribute("loginUser",user1);
+        model.addAttribute("loginUser",user1);
         logger.info("注册成功");
         return "admin/user-info";
     }
 
     @GetMapping("/index")
     public String index(HttpSession session,RedirectAttributes attributes){
-        User user = (User) session.getAttribute("user");
+        User user = (User) session.getAttribute("loginUser");
         if (user != null){
             user.setPassword(null);
-            session.setAttribute("user",user);
+            session.setAttribute("loginUser",user);
             logger.info("登录成功");
             return "admin/index";
         }
@@ -96,7 +96,7 @@ public class AdminController {
         User user = userService.checkUser(username, password);
         if (user != null){
             user.setPassword(null);
-            session.setAttribute("user",user);
+            session.setAttribute("loginUser",user);
             logger.info("登录成功");
             return "admin/index";
         }
@@ -108,8 +108,19 @@ public class AdminController {
 
     @GetMapping("/logout")
     public String logout(HttpSession session){
-        session.removeAttribute("user");
+        session.removeAttribute("loginUser");
         logger.info("注销成功");
         return "redirect:/admin";
+    }
+
+
+    @GetMapping("/pre/index")
+    public String preIndex(HttpSession session){
+        User user = (User) session.getAttribute("loginUser");
+        if (user != null){
+            user.setPassword(null);
+            session.setAttribute("loginUser",user);
+        }
+        return "redirect:/";
     }
 }

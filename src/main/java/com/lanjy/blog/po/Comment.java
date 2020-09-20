@@ -25,15 +25,7 @@ public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long   id;
-    /*** 昵称 */
-    @Column(name = "nickName")
-    private String nickName;
-    /*** 用户名 */
-    private String username;
-    /*** 邮箱 */
-    private String email;
-    /*** 头像 */
-    private String avatar;
+
     /*** 评论内容 */
     private String content;
     @Column(name = "adminComment")
@@ -47,6 +39,8 @@ public class Comment {
     /*** 博客评论 对 博客：多对多 ;被维护关系*/
     @ManyToOne
     private Blog blog;
+    @OneToOne
+    private User   user;
 
     /** 评论回复的对象 */
     @OneToMany(mappedBy = "parentComment")
@@ -58,18 +52,5 @@ public class Comment {
     @Transient
     private String   userId;
 
-    @Override
-    public String toString() {
-        return "Comment{" +
-                "id=" + id +
-                ", nickName='" + nickName + '\'' +
-                ", email='" + email + '\'' +
-                ", avatar='" + avatar + '\'' +
-                ", content='" + content + '\'' +
-                ", createTime=" + createTime +
-                ", blog=" + blog +
-                ", adminComment=" + adminComment +
-                ", replyComment=" + replyComments +
-                '}';
-    }
+    
 }

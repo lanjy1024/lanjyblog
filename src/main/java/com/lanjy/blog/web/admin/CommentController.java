@@ -64,8 +64,7 @@ public class CommentController {
      * @return
      */
     @PostMapping("/comments")
-    public String postComments(Comment comment,
-                           HttpSession session, Model model) throws NotFoundException {
+    public String postComments(Comment comment, HttpSession session, Model model) throws NotFoundException {
 
 //        comment.setAvatar(user.getAvatar());
 //        comment.setEmail(user.getEmail());
@@ -73,6 +72,7 @@ public class CommentController {
         Blog blog = blogService.getBlog(blogId);
         comment.setBlog(blog);
         User user = userService.findUserById(comment.getUserId());
+        comment.setUser(user);
         comment.setAdminComment(user.getId().equals(blog.getUser().getId()));
         commentService.saveComment(comment);
         return "redirect:/comments/"+blogId;

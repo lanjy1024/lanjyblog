@@ -68,7 +68,7 @@ public class BlogController {
     public String blogs(@PageableDefault(size = 5,sort = {"id"},direction = Sort.Direction.DESC)
                                     Pageable pageable, BlogQuery blogQuery,
                                     HttpSession session,Model model){
-        User user = (User) session.getAttribute("user");
+        User user = (User) session.getAttribute("loginUser");
         blogQuery.setUserId(user.getId());
         Page<Blog> tagPage = blogService.listBlog(pageable,blogQuery);
         model.addAttribute("page",tagPage);
@@ -87,7 +87,7 @@ public class BlogController {
     @PostMapping("/search")
     public String search( Pageable pageable,BlogQuery blogQuery,
                                 HttpSession session,Model model){
-        User user = (User) session.getAttribute("user");
+        User user = (User) session.getAttribute("loginUser");
         blogQuery.setUserId(user.getId());
         Page<Blog> tagPage = blogService.listBlog(pageable,blogQuery);
         model.addAttribute("page",tagPage);
@@ -120,7 +120,7 @@ public class BlogController {
     @PostMapping
     public String post(HttpSession session, Blog blog, RedirectAttributes attributes) throws NotFoundException {
        try{
-           blog.setUser((User) session.getAttribute("user"));
+           blog.setUser((User) session.getAttribute("loginUser"));
            blog.setType(typeService.getType(blog.getType().getId()));
            blog.setTags(tagService.listTag(blog.getTagIds()));
 
